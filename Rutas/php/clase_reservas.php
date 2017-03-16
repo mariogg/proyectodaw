@@ -43,6 +43,20 @@
 			}
 			return $mensaje;
 		}
+		
+		function seleccionarTodasReservas(){
+			$consulta="select * from reservas";
+			if($resultado=$this->conexion->query($consulta)){
+				return resultado;
+			}
+		}
+		
+		function seleccionarTodasReservas($id){
+			$consulta="select * from reservas where id=".$id;
+			if($resultado=$this->conexion->query($consulta)){
+				return resultado;
+			}
+		}
 	}
 	
 ?>
