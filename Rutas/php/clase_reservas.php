@@ -10,7 +10,7 @@
                 die('Error de Conexion ('.$this->conexion->connect_errno.')'.$this->conexion->connect_error);
             }
 		}
-		
+		//pagina web
 		function nuevaReserva($id_ruta,$id_usuario,$num_personas,$fecha){
 			$mensaje="";
 			$consulta="insert into reservas (ID_RUTAS, ID_USUARIO, NUM_PERSONAS, FECHA) VALUES (".$id_ruta.",".$id_usuario.",".$num_personas.",'".$fecha."')";
@@ -21,7 +21,7 @@
 			}
 			return $mensaje;
 		}
-		
+		//pagina web
 		function borrarReserva($id){
 			$mensaje="";
 			$consulta="delete from reservas where id=".$id;
@@ -32,7 +32,7 @@
 			}
 			return $mensaje;
 		}
-		
+		//pagina web
 		function editarReserva($id,$num_personas,)){
 			$mensaje="";
 			$consulta="update reservas set NUM_PERSONAS=".$num_personas." where id="$id;
@@ -43,15 +43,15 @@
 			}
 			return $mensaje;
 		}
-		
+		//pagina web
 		function seleccionarTodasReservas(){
 			$consulta="select * from reservas";
 			if($resultado=$this->conexion->query($consulta)){
 				return resultado;
 			}
 		}
-		
-		function seleccionarTodasReservas($id){
+		//pagina web
+		function seleccionarReserva($id){
 			$consulta="select * from reservas where id=".$id;
 			if($resultado=$this->conexion->query($consulta)){
 				return resultado;
