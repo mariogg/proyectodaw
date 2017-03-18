@@ -1,36 +1,43 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
    "http://www.w3.org/TR/html4/loose.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
-  <html>
+ <html>
     <head>
-      <title>RutAmbroz</title>
-      <meta http-equiv="content-type" content="text/html;charset=utf-8" />
-      <link rel="stylesheet" type="text/css" href=""/>
-
-<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css">
-      <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
-      <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
-      <script type="text/javascript"></script>
-      <style> </style>
+        <title>RutAmbroz</title>
+        <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+        <link rel="stylesheet" type="text/css" href=""/>
+	    <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css">
+        <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+        <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+        <script type="text/javascript"></script>
+        <style> </style>
 
     </head>
     <body>
-		<form action="rutas/php/panel_admin_registro.php" method="POST">
-		<label>Nombre: <input type="text" name="nombre"/></label>
-		<label>Kilometros: <input type="text" name="kilometros"/></label>
-		<label>Minutos: <input type="number" name="minutos"/></label>
-		<label>Inicio: <input type="text" name="inicio"/></label>
-		<label>Final: <input type="text" name="final"/></label>
-		<label>Consejos: <textarea name="consejos"></textarea></label>
-		<label>Dificultad: <select name="dificultad">
-		    <option value="Baja">Baja</option>
-		    <option value="Media">Media</option>
-		    <option value="Alta">Alta</option>
-		</select></label>
-		<label>Numero de reservas : <input type="number" name="maximo"/></label>
-		<label>Dirección PDF:<input type="text" name="pdf"/></label>
-		<label>Mapa: <input type="text" name="mapa"/></label>
-		<button>Registrar</button>
-		</form>
-		</body>
-  </html>
+		<section id="nuevo_articulo">
+			<form action="rutas/php/panel_admin_registro.php" method="POST">
+				<label>Nombre: <input type="text" name="nombre"/></label>
+				<label>Kilometros: <input type="text" name="kilometros"/></label>
+				<label>Minutos: <input type="number" name="minutos"/></label>
+				<label>Inicio: <input type="text" name="inicio"/></label>
+				<label>Final: <input type="text" name="final"/></label>
+				<label>Consejos: <textarea name="consejos"></textarea></label>
+				<label>Dificultad: <select name="dificultad">
+					<option value="Baja">Baja</option>
+					<option value="Media">Media</option>
+					<option value="Alta">Alta</option>
+				</select></label>
+				<label>Numero de reservas : <input type="number" name="maximo"/></label>
+				<label>Dirección PDF:<input type="text" name="pdf"/></label>
+				<label>Mapa: <input type="text" name="mapa"/></label>
+				<button>Registrar</button>
+			</form>
+		</section>
+		<section id="borrar_articulo">
+			<form action="rutas/php/panel_admin_borrar.php" method="POST">
+				<label>ID: <input type="number" name="id"/></label>
+				<button>Borrar</button>
+			</form>
+		</section>
+	</body>
+</html>

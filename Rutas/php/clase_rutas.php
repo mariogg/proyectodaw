@@ -41,7 +41,7 @@
 			if($resultado=$this->conexion->query($consulta)){
 				$mensaje="Borrada la ruta con id=".$id;
 			}else{
-				$mensaje="No se ha podido modificar la ruta con id=".$id;
+				$mensaje="No se ha podido borrar la ruta con id=".$id;
 			}
 			return $mensaje;
 		}
@@ -60,6 +60,10 @@
 			}
 		}
 		
+		function desconectar(){
+			$this->conexion->close();
+			return "conexion cerrada";
+		}
 	}
 
 ?>
