@@ -21,7 +21,7 @@
 			<label>Kilometros: <input type="text" name="kilometros"/></label>
 			<label>Minutos: <input type="number" name="minutos"/></label>
 			<label>Inicio: <input type="text" name="inicio"/></label>
-			<label>Final: <input type="text" name="final"/></label>
+			<label>Final: <input type="text" name="destino"/></label>
 			<label>Consejos: <textarea name="consejos"></textarea></label>
 			<label>Dificultad: <select name="dificultad">
 				<option value="Baja">Baja</option>
@@ -29,11 +29,15 @@
 				<option value="Alta">Alta</option>
 			</select></label>
 			<label>Numero de reservas : <input type="number" name="maximo"/></label>
-			<form method="post" id="formulario" enctype="multipart/form-data">			
-				<label>Dirección PDF: <input name="archivo" id="archivo" type="file"></label>
-			</form>			
-			<label>Mapa: <input type="text" name="mapa"/></label>
-			<button id="registro">Registrar</button><br>
+			<label>Mapa: <input type="text" name="mapa"/></label>		
+			<form enctype="multipart/form-data" class="formulario">
+			<label>Subir un archivo</label><br />
+				<input name="archivo" type="file" id="imagen" /><br />
+				<input type="button" value="Registrar" /><br />
+			</form>
+					
+			
+			
 			<p id="mensaje"></p><br>
 		</section>
 		<section id="borrar_articulo">
