@@ -16,7 +16,7 @@
     </head>
     <body>
 		<section id="nuevo_articulo">
-			
+			<form action="rutas/php/panel_admin_registro.php" method="POST" enctype="multipart/form-data" class="formulario">
 			<label>Nombre: <input type="text" name="nombre"/></label>
 			<label>Kilometros: <input type="text" name="kilometros"/></label>
 			<label>Minutos: <input type="number" name="minutos"/></label>
@@ -29,11 +29,9 @@
 				<option value="Alta">Alta</option>
 			</select></label>
 			<label>Numero de reservas : <input type="number" name="maximo"/></label>
-			<form method="post" id="formulario" enctype="multipart/form-data">			
-				<label>Dirección PDF: <input name="archivo" id="archivo" type="file"></label>
-			</form>			
+			<label>Dirección PDF:<input name="archivo" id="archivo" type="file"></label>
 			<label>Mapa: <input type="text" name="mapa"/></label>
-			<button id="registro">Registrar</button><br>
+			<button id="registro">Registrar</button><br></form>
 			<p id="mensaje"></p><br>
 		</section>
 		<section id="borrar_articulo">
