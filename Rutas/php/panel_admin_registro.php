@@ -13,6 +13,9 @@
 	
 	$enlace=new rutas();
 	$resultado=$enlace->nuevaRuta($nombre,$km,$minutos,$inicio,$final,$consejos,$dificultad,0,$pdf,$max_res,$mapa);
+	
+	
 	echo $resultado;
+	
 	
 ?>

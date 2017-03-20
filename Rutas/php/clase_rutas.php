@@ -15,9 +15,9 @@
 		function nuevaRuta($nombre,$kilometros,$minutos,$inicio,$final,$consejos,$dificultad,$valoracion,$pdf,$max_res,$mapa){
 			$mensaje="";
 			$consulta="insert into rutas (NOMBRE, KILOMETROS, MINUTOS, INICIO, FINAL, CONSEJOS, DIFICULTAD, VALORACION, PDF, MAX_RESERVAS, MAPA) values ('".$nombre."',".$kilometros.",".$minutos.",'".$inicio."','".$final."','".$consejos."','".$dificultad."',".$valoracion.",'".$pdf."',".$max_res.",'".$mapa."')";
-			echo $consulta;
+			
 			if($resultado=$this->conexion->query($consulta)){
-				$mensaje="Registrado nueva ruta";
+				$mensaje="Registrada nueva ruta";
 			}else{
 				$mensaje="No se ha podido registrar la ruta";
 			}

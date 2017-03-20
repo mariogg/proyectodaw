@@ -7,15 +7,16 @@
         <meta http-equiv="content-type" content="text/html;charset=utf-8" />
         <link rel="stylesheet" type="text/css" href=""/>
 	    <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css">
+		<script  src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
         <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
         <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
-        <script type="text/javascript"></script>
+        <script  src="rutas/js/administracion.js"></script>
         <style> </style>
 
     </head>
     <body>
 		<section id="nuevo_articulo">
-			<form action="rutas/php/panel_admin_registro.php" method="POST">
+			
 				<label>Nombre: <input type="text" name="nombre"/></label>
 				<label>Kilometros: <input type="text" name="kilometros"/></label>
 				<label>Minutos: <input type="number" name="minutos"/></label>
@@ -30,8 +31,8 @@
 				<label>Numero de reservas : <input type="number" name="maximo"/></label>
 				<label>Dirección PDF:<input type="text" name="pdf"/></label>
 				<label>Mapa: <input type="text" name="mapa"/></label>
-				<button>Registrar</button>
-			</form>
+				<button id="registro">Registrar</button><br>
+			<p id="mensaje"></p><br>
 		</section>
 		<section id="borrar_articulo">
 			<form action="rutas/php/panel_admin_borrar.php" method="POST">
