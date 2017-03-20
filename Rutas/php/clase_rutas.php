@@ -14,11 +14,12 @@
 		//Para panel del Admin
 		function nuevaRuta($nombre,$kilometros,$minutos,$inicio,$final,$consejos,$dificultad,$valoracion,$pdf,$max_res,$mapa){
 			$mensaje="";
-			$consulta="inser into rutas (NOMBRE, KILOMETROS, MINUTOS, INICIO, FINAL, CONSEJOS, DIFICULTAD, VALORACION, PDF, MAX_RESERVAS, MAPA) values ('".$nombre."',".$kilometros.",".$minutos.",'".$inicio."','".$final."','".$consejos."','".$dificultad."',".$valoracion.",'".$pdf."',".$max_res.",'".$mapa."')";
+			$consulta="insert into rutas (NOMBRE, KILOMETROS, MINUTOS, INICIO, FINAL, CONSEJOS, DIFICULTAD, VALORACION, PDF, MAX_RESERVAS, MAPA) values ('".$nombre."',".$kilometros.",".$minutos.",'".$inicio."','".$final."','".$consejos."','".$dificultad."',".$valoracion.",'".$pdf."',".$max_res.",'".$mapa."')";
+			
 			if($resultado=$this->conexion->query($consulta)){
-				$mensaje="Registrado nueva ruta";
+				$mensaje="Registrada nueva ruta";
 			}else{
-				$mensaje"No se ha podido registrar la ruta";
+				$mensaje="No se ha podido registrar la ruta";
 			}
 			return $mensaje;
 		}
@@ -40,7 +41,7 @@
 			if($resultado=$this->conexion->query($consulta)){
 				$mensaje="Borrada la ruta con id=".$id;
 			}else{
-				$mensaje="No se ha podido modificar la ruta con id=".$id;
+				$mensaje="No se ha podido borrar la ruta con id=".$id;
 			}
 			return $mensaje;
 		}
@@ -59,6 +60,10 @@
 			}
 		}
 		
+		function desconectar(){
+			$this->conexion->close();
+			return "conexion cerrada";
+		}
 	}
 
 ?>

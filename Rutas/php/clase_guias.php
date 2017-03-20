@@ -55,5 +55,10 @@
 				return $resultado;
 			}
 		}
+		
+		function desconectar(){
+			$this->conexion->close();
+			return "conexion cerrada";
+		}
 	}
 ?>
