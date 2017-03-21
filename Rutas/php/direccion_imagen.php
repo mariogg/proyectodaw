@@ -1,3 +1,4 @@
+
 <?php
 //comprobamos que sea una petición ajax
 if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') 
@@ -15,7 +16,7 @@ if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQU
     if ($file && move_uploaded_file($_FILES['archivo']['tmp_name'],"pdf/".$file))
     {
       
-       echo $file;//devolvemos el nombre del archivo para pintar la imagen
+       echo "pdf/".$file;//devolvemos el nombre del archivo para pintar la imagen
     }
 }else{
     throw new Exception("Error Processing Request", 1);   

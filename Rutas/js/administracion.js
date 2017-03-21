@@ -45,7 +45,7 @@ $(document).ready(function(){
 				inicio=datos[3].value
 				destino=datos[4].value	
 				num_reservas=parseInt(datos[5].value)
-				mapa=datos[7].value	
+				mapa=datos[6].value	
 				consejos=$('textarea').val()
 				dificultad=$('select').val()	
 				
@@ -59,7 +59,7 @@ $(document).ready(function(){
 					maximo:num_reservas,
 					mapa:mapa,
 					dificultad:dificultad,
-					archivo:data,
+					archivo:archivo,
 					consejos:consejos
 				}
 				
@@ -72,8 +72,7 @@ $(document).ready(function(){
 					   $("#nuevo_articulo input:text").each(function(){
 						   $(this).val("")
 					   })
-					   $('textarea').val("")
-			   
+					   $('textarea').val("")	   
 					}
 				})
 				
