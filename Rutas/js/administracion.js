@@ -69,7 +69,7 @@ $(document).ready(function(){
 					data: ruta,		
 					success: function(data){                
 					   $('#mensaje').html(data)
-					   $("#nuevo_articulo input").each(function(){
+					   $("#nuevo_articulo input:text").each(function(){
 						   $(this).val("")
 					   })
 					   $('textarea').val("")
