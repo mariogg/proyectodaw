@@ -1,5 +1,7 @@
 $(document).ready(function(){   
-    
+    mostrar()
+	ocultar()
+
     var fileExtension = "";
     //función que observa los cambios del campo file y obtiene información
     $(':file').change(function(){
@@ -18,7 +20,7 @@ $(document).ready(function(){
     });
  
     //al enviar el formulario
-    $(':button').click(function(){
+    $('#registrar').click(function(){
         //información del formulario
         var formData = new FormData($(".formulario")[0]);
        
@@ -81,7 +83,19 @@ $(document).ready(function(){
     })
 })
  
- 
+function mostrar(){
+	
+	$('#nuevo').click(function(){
+			$('#nuevo_articulo').removeClass('ocultar').addClass('mostrar')
+	})
+} 
+
+function ocultar(){
+	$('#oculto').click(function(){
+			$('#nuevo_articulo').removeClass('mostrar').addClass('ocultar')
+	})
+}
+
 //comprobamos si el archivo a subir es una imagen
 //para visualizarla una vez haya subido
 function isImage(extension)
