@@ -1,4 +1,6 @@
 $(document).ready(function(){   
+
+	cargarRutas()
     mostrar()
 	ocultar()
 
@@ -96,8 +98,7 @@ function ocultar(){
 	})
 }
 
-//comprobamos si el archivo a subir es una imagen
-//para visualizarla una vez haya subido
+//comprobamos si el archivo a subir es un pdf
 function isImage(extension)
 {
     switch(extension.toLowerCase()) 
@@ -109,4 +110,26 @@ function isImage(extension)
             return false;
         break;
     }
+}
+
+function cargarRutas(){
+	
+	$.ajax({
+		url: 'rutas/php/panel_admin_verArticulos.php',  
+		type: 'POST',
+		DataType:'Json',		
+		success: function(data){  	
+			$('#mensaje2').html("")
+			var enlace="<table>"
+			for(var x=0;x<data.length;x++){
+				enlace+="<tr>"
+				enlace += "<td>"+data[x].id+"</td>"+"<td>"+data[x].nombre+"</td>"+"<td>"+data[x].km+"</td>"+"<td>"+data[x].minutos+"</td>"+"<td>"+data[x].inicio+"</td>"+"<td>"+data[x].destino+"</td>"+"<td>"+data[x].consejos+"</td>"+"<td>"+data[x].dificultad+"</td>"+"<td>"+data[x].valoracion+"</td>"+"<td>"+data[x].pdf+"</td>"+"<td>"+data[x].max_res+"</td>"+"<td>"+data[x].mapa+"</td>"
+				enlace+="</tr>"
+			}
+			enlace+="</table>"
+            console.log(data[1].id)
+        $('#mensaje2').html(enlace)
+		 
+		}
+	})
 }
