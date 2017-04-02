@@ -3,6 +3,8 @@ $(document).ready(function(){
 	cargarRutas()
     mostrar()
 	ocultar()
+	//borrar()
+	
 
     var fileExtension = "";
     //función que observa los cambios del campo file y obtiene información
@@ -115,7 +117,7 @@ function isImage(extension)
 function cargarRutas(){
 	
 	$.ajax({
-		url: 'rutas/php/panel_admin_verArticulos.php',  
+		url: 'rutas/php/panel_admin_verRutas.php',  
 		type: 'POST',
 		DataType:'Json',		
 		success: function(data){  	
@@ -123,13 +125,28 @@ function cargarRutas(){
 			var enlace="<table>"
 			for(var x=0;x<data.length;x++){
 				enlace+="<tr>"
-				enlace += "<td>"+data[x].id+"</td>"+"<td>"+data[x].nombre+"</td>"+"<td>"+data[x].km+"</td>"+"<td>"+data[x].minutos+"</td>"+"<td>"+data[x].inicio+"</td>"+"<td>"+data[x].destino+"</td>"+"<td>"+data[x].consejos+"</td>"+"<td>"+data[x].dificultad+"</td>"+"<td>"+data[x].valoracion+"</td>"+"<td>"+data[x].pdf+"</td>"+"<td>"+data[x].max_res+"</td>"+"<td>"+data[x].mapa+"</td>"
+				enlace += "<td>"+data[x].id+"</td>"+"<td>"+data[x].nombre+"</td>"+"<td>"+data[x].km+"</td>"+"<td>"+data[x].minutos+"</td>"+"<td>"+data[x].inicio+"</td>"+"<td>"+data[x].destino+"</td>"+"<td>"+data[x].consejos+"</td>"+"<td>"+data[x].dificultad+"</td>"+"<td>"+data[x].valoracion+"</td>"+"<td>"+data[x].pdf+"</td>"+"<td>"+data[x].max_res+"</td>"+"</tr><tr ><td colspan=8>"+data[x].mapa+"</td><td><button class='borrar' id='"+data[x].id+"'>Borrar</button><button class='modificar' id='"+data[x].id+"'>Modificar</button></td>"
 				enlace+="</tr>"
 			}
 			enlace+="</table>"
-            console.log(data[1].id)
+            
         $('#mensaje2').html(enlace)
-		 
+		$('.modificar').click(modificar)
+		$('.borrar').click(borrar)
 		}
 	})
+}
+
+function modificar(){
+	var padre=$(this).attr('id')
+	
+	console.log(padre)
+	
+}
+
+function borrar(){
+	var padre=$(this).attr('id')
+	
+	console.log(padre)
+	
 }

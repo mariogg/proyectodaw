@@ -34,15 +34,10 @@
 	}
 	
 	while($fila=$resultado->fetch_assoc()){	
-		$enlace=new ruta($fila['ID'],$fila['NOMBRE'],$fila['KILOMETROS'],$fila['MINUTOS'],$fila['INICIO'],$fila['FINAL'],$fila['CONSEJOS'],$fila['DIFICULTAD'],$fila['VALORACION'],$fila['PDF'],$fila['MAX_RESERVAS'],$fila['MAPA']);
+		$enlace=new ruta($fila['ID'],$fila['NOMBRE'],$fila['KILOMETROS'],$fila['MINUTOS'],$fila['INICIO'],$fila['FINAL'],$fila['CONSEJOS'],$fila['DIFICULTAD'],$fila['VALORACION'],$fila['PDF'],$fila['MAX_RESERVAS'],$fila['PDF']/*$fila['MAPA']*/);
 		array_push($datos, $enlace);
-	}
+	}	
 	
-	
-	$datos1=new ruta(4,"Ruta de Prueba",20,520,"mi casa","tu casa","que salga bien","dificil",5.5,"hola.pdf",50,"hola.pdf");
-	array_push($datos,$datos1);
-	$datos2=new ruta(6,"Ruta de Prueba",20,520,"mi casa","tu casa","que salga bien","dificil",5.5,"hola.pdf",50,"hola.pdf");
-	array_push($datos,$datos2);
 	if($datos!=""){
 		header('Content-Type: application/json');
 		echo json_encode($datos);
