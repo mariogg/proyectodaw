@@ -2,8 +2,8 @@ $(document).ready(function(){
 
 	cargarRutas()
     mostrar()
-	ocultar()
-	//borrar()
+	$('#oculto').click(ocultar)
+	
 	
 
     var fileExtension = "";
@@ -75,10 +75,13 @@ $(document).ready(function(){
 					data: ruta,		
 					success: function(data){                
 					   $('#mensaje').html(data)
+					   cargarRutas()
+					  ocultar()
 					   $("#nuevo_articulo input:text").each(function(){
 						   $(this).val("")
 					   })
-					   $('textarea').val("")	   
+					   $('textarea').val("")
+					   
 					}
 				})
 				
@@ -94,10 +97,8 @@ function mostrar(){
 	})
 } 
 
-function ocultar(){
-	$('#oculto').click(function(){
-			$('#nuevo_articulo').removeClass('mostrar').addClass('ocultar')
-	})
+function ocultar(){	
+	$('#nuevo_articulo').removeClass('mostrar').addClass('ocultar')	
 }
 
 //comprobamos si el archivo a subir es un pdf
@@ -125,7 +126,7 @@ function cargarRutas(){
 			var enlace="<table>"
 			for(var x=0;x<data.length;x++){
 				enlace+="<tr>"
-				enlace += "<td>"+data[x].id+"</td>"+"<td>"+data[x].nombre+"</td>"+"<td>"+data[x].km+"</td>"+"<td>"+data[x].minutos+"</td>"+"<td>"+data[x].inicio+"</td>"+"<td>"+data[x].destino+"</td>"+"<td>"+data[x].consejos+"</td>"+"<td>"+data[x].dificultad+"</td>"+"<td>"+data[x].valoracion+"</td>"+"<td>"+data[x].pdf+"</td>"+"<td>"+data[x].max_res+"</td>"+"</tr><tr ><td colspan=8>"+data[x].mapa+"</td><td><button class='borrar' id='"+data[x].id+"'>Borrar</button><button class='modificar' id='"+data[x].id+"'>Modificar</button></td>"
+				enlace += "<td><button class='borrar' id='"+data[x].id+"'>Borrar</button><button class='modificar' id='"+data[x].id+"'>Modificar</button></td><td id='ocultar'>"+data[x].id+"</td>"+"<td>"+data[x].nombre+"</td>"+"<td>"+data[x].km+"</td>"+"<td>"+data[x].minutos+"</td>"+"<td>"+data[x].inicio+"</td>"+"<td>"+data[x].destino+"</td>"+"<td>"+data[x].consejos+"</td>"+"<td>"+data[x].dificultad+"</td>"+"<td>"+data[x].valoracion+"</td>"+"<td>"+data[x].pdf+"</td>"+"<td>"+data[x].max_res+"</td>"+"</tr><tr ><td colspan=8>"+data[x].mapa+"</td>"
 				enlace+="</tr>"
 			}
 			enlace+="</table>"
@@ -145,8 +146,21 @@ function modificar(){
 }
 
 function borrar(){
-	var padre=$(this).attr('id')
+	console.log("ok")
+	var id=$(this).attr('id')
+	var parametro={
+		'id':id
+	}
+	$.ajax({
+		url: 'rutas/php/panel_admin_borrar.php',  
+		type: 'POST',
+		data:parametro,
+		DataType:'Json',		
+		success: function(data){  	
+			$('#mensaje').html(data)
+			cargarRutas()
+		}
+	})
 	
-	console.log(padre)
 	
 }
