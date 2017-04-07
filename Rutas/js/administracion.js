@@ -52,8 +52,8 @@ $(document).ready(function(){
 				destino=datos[4].value	
 				num_reservas=parseInt(datos[5].value)
 				mapa=datos[6].value	
-				consejos=$('textarea').val()
-				dificultad=$('select').val()	
+				consejos=$('#nuevo_articulo textarea').val()
+				dificultad=$('#nuevo_articulo select').val()	
 				
 				
 				var ruta={
