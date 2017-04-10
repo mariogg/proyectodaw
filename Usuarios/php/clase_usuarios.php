@@ -1,5 +1,5 @@
 <?php
-session_start();
+
 class Usuarios{
 
     public $conexion="";
@@ -74,28 +74,37 @@ class Usuarios{
         }
     }
 
-    function comprobarLogueo($nick,$password) {
-        $consulta = "select * from usuarios where usuario='Deivid' and password='1234'";
-        
+    function comprobarLogueo($nick) {
+        $consulta = "select * from usuarios where USUARIO='$nick'";
+        $resul="";
         if($resultado=$this->conexion->query($consulta)) {
-            
-            
-            
-            if($filas = $resultado->fetch_assoc()) {
-                $nick = $filas['USUARIO'];
-                $correo = $filas['CORREO'];
-                $_SESSION["nick"]=$nick;
-                $_SESSION["correo"]=$correo;
-                return "OK";
-            }else {
-                return "Pillo fallo";
-            }
-            
-           
+
+
+
+            while($fila=$resultado->fetch_assoc()){ 
+                
+                $nickSelect = $fila['USUARIO'];
+                $passwordSelect = $fila['PASSWORD'];
+                $correoSelect = $fila['CORREO'];
+                $dniSelect = $fila['DNI'];
+                $nombreSelect = $fila['NOMBRE'];
+                $apellidosSelect = $fila['APELLIDOS'];
+                $telefonoSelect = $fila['TELEFONO'];
+                $fecnaSelect = $fila['FECNA'];
+                
+                $perfilSelect = $fila['PERFIL'];
+                
+                $resul=[$nickSelect,$passwordSelect,$correoSelect,$dniSelect,$nombreSelect,$apellidosSelect,$fecnaSelect,$telefonoSelect,$perfilSelect];
+            } 
+
+            return $resul;
         }else {
-            return "no encontrado";
+            return 0;
         }
-        
+
+
+
+
     }
 
 }

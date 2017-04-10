@@ -15,7 +15,7 @@ $(document).ready(function() {
             data:  enviarAjax,
             url:   'Usuarios/php/loguearCliente.php',
             type:  'post',
-            dataType: 'Json', 
+             
             beforeSend: function () {
                 $("#resultado").html("Procesando, espere por favor...");
             },
@@ -71,7 +71,26 @@ $(document).ready(function() {
         });
 
     }); 
-
+    $('#desconectar').on('click',function() {
+        var desconectar = {"desconectar":$(this).val()};
+        
+        console.log(desconectar);
+        
+        $.ajax({
+            data:  desconectar,
+            url:   'Usuarios/php/desconectarCliente.php',
+            type:  'post',
+            beforeSend: function () {
+                $("#resultado").html("Procesando, espere por favor...");
+            },
+            success:  function (response) {
+                $("#resultado").html(response);
+            }
+            
+            
+        });
+        
+    });
 
 });
 
