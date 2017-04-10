@@ -1,4 +1,9 @@
 <?php
+<<<<<<< HEAD
+
+class Usuarios{
+=======
+>>>>>>> refs/remotes/origin/master
 
     class Usuarios{
         
@@ -30,6 +35,36 @@
             
             return $mensaje;
         }
+<<<<<<< HEAD
+    }
+
+    function comprobarLogueo($nick) {
+        $consulta = "select * from usuarios where USUARIO='$nick'";
+        $resul="";
+        if($resultado=$this->conexion->query($consulta)) {
+
+
+
+            while($fila=$resultado->fetch_assoc()){ 
+                
+                $nickSelect = $fila['USUARIO'];
+                $passwordSelect = $fila['PASSWORD'];
+                $correoSelect = $fila['CORREO'];
+                $dniSelect = $fila['DNI'];
+                $nombreSelect = $fila['NOMBRE'];
+                $apellidosSelect = $fila['APELLIDOS'];
+                $telefonoSelect = $fila['TELEFONO'];
+                $fecnaSelect = $fila['FECNA'];
+                
+                $perfilSelect = $fila['PERFIL'];
+                
+                $resul=[$nickSelect,$passwordSelect,$correoSelect,$dniSelect,$nombreSelect,$apellidosSelect,$fecnaSelect,$telefonoSelect,$perfilSelect];
+            } 
+
+            return $resul;
+        }else {
+            return 0;
+=======
         
         
         //Hace un update a la base de datos para modificar parámetros de usuario
@@ -72,8 +107,12 @@
             if($resultado=$this->conexion->query($consulta)) {
                 return $resultado;
             }
+>>>>>>> refs/remotes/origin/master
         }
-        
+
+
+
+
     }
 
 ?>
