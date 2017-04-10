@@ -12,9 +12,9 @@
             }
 		}
 		//Para panel del Admin
-		function nuevaRuta($nombre,$kilometros,$minutos,$inicio,$final,$consejos,$dificultad,$valoracion,$pdf,$max_res,$mapa){
+		function nuevaRuta($nombre,$kilometros,$minutos,$inicio,$final,$consejos,$dificultad,$valoracion,$pdf,$max_res,$mapa,$imagen){
 			$mensaje="";
-			$consulta="insert into rutas (NOMBRE, KILOMETROS, MINUTOS, INICIO, FINAL, CONSEJOS, DIFICULTAD, VALORACION, PDF, MAX_RESERVAS, MAPA) values ('".$nombre."',".$kilometros.",".$minutos.",'".$inicio."','".$final."','".$consejos."','".$dificultad."',".$valoracion.",'".$pdf."',".$max_res.",'".$mapa."')";
+			$consulta="insert into rutas (NOMBRE, KILOMETROS, MINUTOS, INICIO, FINAL, CONSEJOS, DIFICULTAD, VALORACION, PDF, MAX_RESERVAS, MAPA, IMAGEN) values ('".$nombre."',".$kilometros.",".$minutos.",'".$inicio."','".$final."','".$consejos."','".$dificultad."',".$valoracion.",'".$pdf."',".$max_res.",'".$mapa."','".$imagen."')";
 			
 			if($resultado=$this->conexion->query($consulta)){
 				$mensaje="Registrada nueva ruta";
@@ -24,15 +24,17 @@
 			return $mensaje;
 		}
 		//Para panel del Admin
-		function modificarRuta($id, $nombre,$kilometros,$minutos,$inicio,$final,$consejos,$dificultad,$valoracion,$pdf,$max_res,$mapa){
+		function modificarRuta($id, $nombre,$kilometros,$minutos,$inicio,$final,$consejos,$dificultad,$valoracion,$pdf,$max_res,$mapa,$imagen){
 			$mensaje="";
-			$consulta="update rutas set nombre='".$nombre."' kilometros=".$kilometros." minutos=".$minutos." inicio='".$inicio."' final='".$final."' consejos='".$consejos."' dificultad='".$dificultad."' valoracion=".$valoracion." pdf='".$pdf."' max_reserva=".$max_res." mapa='".$mapa."' where id=".$id;
+			$consulta="update rutas set NOMBRE='".$nombre."', KILOMETROS=".$kilometros.", MINUTOS=".$minutos.", INICIO='".$inicio."', FINAL='".$final."', CONSEJOS='".$consejos."', DIFICULTAD='".$dificultad."', VALORACION=".$valoracion.", PDF='".$pdf."', MAX_RESERVAS=".$max_res.", MAPA='".$mapa."', IMAGEN='".$imagen."' where ID=".$id;
 			if($resultado=$this->conexion->query($consulta)){
 				$mensaje="Modificada la ruta con id=".$id;
+				
 			}else{
 				$mensaje="No se ha podido modificar la ruta con id=".$id;
 			}
 			return $mensaje;
+
 		}
 		//Para panel del Admin
 		function borrarRuta($id){

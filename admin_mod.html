@@ -10,42 +10,9 @@
 		<script  src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
         <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
         <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
-        <script  src="rutas/js/administracion.js"></script>
+        <script  src="rutas/js/administracion2.js"></script>
     </head>
     <body>
-	    
-	<!-- Hacerlo PopUp Añadir ruta --><section>
-		<button id="nuevo">Añadir nuevo</button>
-		<section id="nuevo_articulo" class="ocultar">			
-			<label>Nombre: <input type="text" name="nombre"/></label>
-			<label>Kilometros: <input type="text" name="kilometros"/></label>
-			<label>Minutos: <input type="number" name="minutos"/></label>
-			<label>Inicio: <input type="text" name="inicio"/></label>
-			<label>Final: <input type="text" name="destino"/></label>
-			<label>Consejos: <textarea name="consejos" cols=15 rows=15></textarea></label>
-			<label>Dificultad: <select name="dificultad">
-				<option value="Baja">Baja</option>
-				<option value="Media">Media</option>
-				<option value="Alta">Alta</option>
-			</select></label>
-			<label>Numero de reservas : <input type="number" name="maximo"/></label>
-			<label>Mapa: <input type="text" name="mapa"/></label>		
-			<form enctype="multipart/form-data" class="formulario">
-			<label>Subir imagen</label>
-				<input name="archivo" type="file" id="imagen" />
-				<input type="button" value="Registrar" id="registrar"/>
-			</form>
-					
-			
-			
-			<p id="mensaje"></p><br>
-			<button id="oculto">Ocultar</button>
-		</section>
-		
-	</section >
-	<!-- fin de popup -->
-		
-	<!-- popup modificar articulo -->
 	<section id="Modificar_ruta">
 		<label>ID: <Input type="text" name="id"></label>
 		<label>Valoración: <Input type="text" name="valoracion"></label>
@@ -69,10 +36,5 @@
 			<input type="button" value="Actualizar" id="edit"/>
 		</form>
 	</section>
-	<!-- fin popup -->
-		<section id="mostrar_rutas">
-			
-			<p id="mensaje2"></p><br>
-		</section>
 	</body>
 </html>

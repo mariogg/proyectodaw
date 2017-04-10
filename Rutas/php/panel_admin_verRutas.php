@@ -16,8 +16,9 @@
 		public $valoracion="";
 		public $mapa="";
 		public $dificultad="";
+		public $imagen="";
 		
-		function __construct($id, $nombre,$kilometros,$minutos,$inicio,$final,$consejos,$dificultad,$valoracion,$pdf,$max_res,$mapa){
+		function __construct($id, $nombre,$kilometros,$minutos,$inicio,$final,$consejos,$dificultad,$valoracion,$pdf,$max_res,$mapa,$imagen){
 			$this->id=$id;
 			$this->nombre=$nombre;
 			$this->km=$kilometros;
@@ -30,11 +31,12 @@
 			$this->valoracion=$valoracion;
 			$this->mapa=$mapa;
 			$this->dificultad=$dificultad;
+			$this->imagen=$imagen;
 		}
 	}
 	
 	while($fila=$resultado->fetch_assoc()){	
-		$enlace=new ruta($fila['ID'],$fila['NOMBRE'],$fila['KILOMETROS'],$fila['MINUTOS'],$fila['INICIO'],$fila['FINAL'],$fila['CONSEJOS'],$fila['DIFICULTAD'],$fila['VALORACION'],$fila['PDF'],$fila['MAX_RESERVAS'],$fila['PDF']/*$fila['MAPA']*/);
+		$enlace=new ruta($fila['ID'],$fila['NOMBRE'],$fila['KILOMETROS'],$fila['MINUTOS'],$fila['INICIO'],$fila['FINAL'],$fila['CONSEJOS'],$fila['DIFICULTAD'],$fila['VALORACION'],$fila['PDF'],$fila['MAX_RESERVAS'],$fila['MAPA'],$fila['IMAGEN']);
 		array_push($datos, $enlace);
 	}	
 	
