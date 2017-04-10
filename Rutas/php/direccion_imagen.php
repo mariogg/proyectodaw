@@ -16,10 +16,14 @@ if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQU
     //comprobamos si el archivo ha subido
     if ($file && move_uploaded_file($_FILES['archivo']['tmp_name'],$directorio))
     {
+      if(!empty($directorio)){
+			 echo $directorio;//devolvemos el nombre del archivo para pintar la imagen
+	  }else{
+			echo "Sin fichero";
+	  }
       
-       echo $directorio;//devolvemos el nombre del archivo para pintar la imagen
     }
 }else{
-    throw new Exception("Error Processing Request", 1);   
+    echo "Sin fichero";  
 	
 }
