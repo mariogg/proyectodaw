@@ -16,6 +16,7 @@ function cargarRutas(){
 			enlace="<select id='listado'>"
 			for(var x=0;x<data.length;x++){
 				dureza.push([data[x].nombre,data[x].dificultad,data[x].id])
+				
 				if(x==0){
 					enlace+="<option selected='selected'>"					
 				}else{
@@ -68,7 +69,7 @@ function mostrarC(){
 			
 				for(var x=0;x<data.length;x++){
 					enlace+="<tr>"
-					enlace += "<td><button class='borrar' id='"+data[x].id+"'>Borrar</button></td><td>"+devolverNombre(data[x].id)+"</td>"+"<td>"+data[x].id_ruta+"</td>"+"<td>"+data[x].fecha+"</td>"
+					enlace += "<td><button class='borrar' id='"+data[x].id+"'>Borrar</button></td><td>"+devolverNombre(data[x].id_ruta)+"</td>"+"<td>"+data[x].id_ruta+"</td>"+"<td>"+data[x].fecha+"</td>"
 					enlace+="</tr>"
 				}
 			enlace+="</table></fieldset>"
@@ -94,7 +95,7 @@ function mostrarT(){
 			
 				for(var x=0;x<data.length;x++){
 					enlace+="<tr>"
-					enlace += "<td><button class='borrar' id='"+data[x].id+"'>Borrar</button></td><td>"+devolverNombre(data[x].id)+"</td>"+"<td>"+data[x].id_ruta+"</td>"+"<td>"+data[x].fecha+"</td>"
+					enlace += "<td><button class='borrar' id='"+data[x].id+"'>Borrar</button></td><td>"+devolverNombre(data[x].id_ruta)+"</td>"+"<td>"+data[x].id_ruta+"</td>"+"<td>"+data[x].fecha+"</td>"
 					enlace+="</tr>"
 				}
 			enlace+="</table></fieldset>"
@@ -137,6 +138,7 @@ $(document).ready(function(){
 			$('#mensaje').html("")
 			var fecha=$("#datepicker").val()
 			var ruta=$('#listado').val()
+			console.log(ruta)
 			var encontrado=true
 				contador=0
 				while(encontrado){
@@ -156,6 +158,7 @@ $(document).ready(function(){
 					ruta:id,
 					fecha:fecha
 				}
+				console.log(datos.ruta+" "+datos.fecha)
 				$.ajax({
 					url: 'rutas/php/panel_calendario_registro.php',  
 					type: 'POST',					
@@ -179,6 +182,7 @@ function devolverNombre(id){
 	var encontrado=true
 	while(encontrado){
 		if(dureza[contador][2]==id){
+			console.log(dureza[contador][2])
 			encontrado=false					
 			respuesta = dureza[contador][0]
 			contador=0
