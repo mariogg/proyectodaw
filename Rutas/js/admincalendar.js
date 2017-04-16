@@ -167,6 +167,7 @@ $(document).ready(function(){
 					   $('#mensaje').html(data)
 					   mostrarC()
 					   mostrarT()
+					   $('.borrar').click(borrarRuta)	
 					}
 				})
 			}
