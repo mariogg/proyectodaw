@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>ProyectoDaw</title>
+        <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css">
+        <script  src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+        <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+        <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+        <script  src="Usuarios/js/usuariosCliente.js"></script>
+    </head>
+
+    <body>
+        <header></header>
+        <nav id='nav'>
+            <form>
+                <div id='loguin'>Loguin:</div>
+                <div><input type='text' name='usuario' placeholder='Usuario' id='usuario'/></div>
+                <div><input type='password' name='passwd' id="passwd" placeholder='Password'/></div>
+                <div><input type='button' name='loguearse' id='loguearse' value='Enviar' /></div>
+            </form>
+        </nav>
+        <!-- El formulario de registro debe mostrarse como un desplegable. El primer div tiene la id "registrarse" que debería de funcionar como botón para que se muestren el resto de input que hay a continuacion -->
+        <nav>
+            <form id="insert">
+                <div id="registrarse">Registrarse aquí:</div>
+                <div>Nick de usuario: <input type="text" name="usuario" id="usuario" placeholder="ej:CyberBob"/></div>
+                <div>Contraseña: <input type="password" name="passwd" id="passwd"/></div>
+                <div>Correo electrónico: <input type="text" name="correo" id="correo" placeholder="ej:usuario@correo.com"/></div>
+                <div>DNI:<input type="text" name="dni" id="dni" placeholder="ej:David"/></div>
+                <div>Nombre:<input type="text" name="nombre" id="nombre" placeholder="ej:David"/></div> 
+                <div>Apellidos: <input type="text" name="apellidos" id="apellidos" placeholder="ej:García Hernández"/></div>
+                <div>Fecha de nacimiento: <input type="text" name="fecna" id="fecna" placeholder="ej:23/05/1997"/></div>
+                <div>Teléfono: <input type="text" name="telefono" id="telefono" placeholder="678365229"/></div>
+                <!--El siguiente input #perfil hay que dejarlo oculto para que el usuario no lo vea -->
+                <div><input type="text" name="perfil" id="perfil" value="cliente"/></div>
+                <div><input type="button" name="insertar" id="insertar" value="Enviar"/></div>
+            </form>
+        </nav>
+        <!--Este formulario solo se muestra después de que el usuario se ha logueado. Y debe permanecer oculto siempre que no haya un usuario logueado -->
+        <nav>
+            <form>
+                <!--La siguiente etiqueta <p> contiene un enlace en el que hay que mostrar el nick del usuario. Esto se hace invocando la sesión del usuario creada en el logueo -->
+                <p>Usuario <a href="perfilUsuario.html" id="nickLogueado">XXXXX</a> en linea <input type="button" name="desconectar" id="desconectar" value="Desconectar"/></p>
+                   
+            </form>
+        </nav>
+        <div id="resultado"></div>
+    </body>
+</html>
