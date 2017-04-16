@@ -10,6 +10,17 @@
             }
 		}
 		
+		function borrarCalendario($id){
+			$mensaje="";
+			$consulta="delete from calendario where id=".$id;
+			if($resultado=$this->conexion->query($consulta)){
+				$mensaje="borrado con exito";
+			}else{
+				$mensaje="No se ha podido borrar";
+			}
+			return $mensaje;
+		}
+		
 		function insertarCalendario($id_ruta,$fecha){
 			$mensaje="";
 			$consulta="insert into calendario (ID_RUTA, FECHA) VALUES(".$id_ruta.",'".$fecha."')";
@@ -33,7 +44,7 @@
 		}
 		
 		function visualizarTodasFechas(){
-			$consulta="select * from calendario";
+			$consulta="select * from calendario order by fecha asc";
 			if($resultado=$this->conexion->query($consulta)){
 				return $resultado;
 			}

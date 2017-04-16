@@ -9,15 +9,11 @@
 	$max_res=$_POST['maximo'];
 	$mapa=$_POST['mapa'];
 	$dificultad=$_POST['dificultad'];
-	$destino=$_POST['archivo'];
-	
-	
-	
-	
+	$destino=$_POST['archivo'];	
+	$imagen=$_POST['archivo'];	
 
 	$enlace=new rutas();
-	$resultado=$enlace->nuevaRuta($nombre,$km,$minutos,$inicio,$final,$consejos,$dificultad,0,$destino,$max_res,$mapa);
-	
+	$resultado=$enlace->nuevaRuta($nombre,$km,$minutos,$inicio,$final,$consejos,$dificultad,0,$destino,$max_res,$mapa,$imagen);	
 	
 	echo $resultado;
 	

@@ -9,17 +9,25 @@ if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQU
  
     //comprobamos si existe un directorio para subir el archivo
     //si no es así, lo creamos
-    if(!is_dir("../pdf/")) 
-        mkdir("../pdf/");
-		$directorio="../pdf/".$file;
+    if(!is_dir("../img/")) 
+	{
+        mkdir("../img/");
+	}
+	$directorio="../img/".$file;
         
     //comprobamos si el archivo ha subido
     if ($file && move_uploaded_file($_FILES['archivo']['tmp_name'],$directorio))
     {
+      if(!empty($directorio)){
+			 echo $directorio;//devolvemos el nombre del archivo para pintar la imagen
+	  }else{
+			echo "Sin fichero";
+	  }
       
-       echo $directorio;//devolvemos el nombre del archivo para pintar la imagen
-    }
+    }else{
+		echo "Sin Fichero";
+	}
 }else{
-    throw new Exception("Error Processing Request", 1);   
+    echo "no es un Ajax";  
 	
 }

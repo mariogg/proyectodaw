@@ -1,5 +1,5 @@
 $(document).ready(function(){   
-
+	console.log("inicio")
 	cargarRutas()
     mostrar()
 	$('#oculto').click(ocultar)
@@ -8,26 +8,27 @@ $(document).ready(function(){
 
     var fileExtension = "";
     //función que observa los cambios del campo file y obtiene información
-    $(':file').change(function(){
+    $('#nuevo :file').change(function(){
         //obtenemos un array con los datos del archivo
-        var file = $("#imagen")[0].files[0];
+        var file = $("#imagen")[0].files[0]
         //obtenemos el nombre del archivo
-        var fileName = file.name;
+        var fileName = file.name
         //obtenemos la extensión del archivo
-        fileExtension = fileName.substring(fileName.lastIndexOf('.') + 1);
+        fileExtension = fileName.substring(fileName.lastIndexOf('.') + 1)
         //obtenemos el tamaño del archivo
-        var fileSize = file.size;
+        var fileSize = file.size
         //obtenemos el tipo de archivo image/png ejemplo
-        var fileType = file.type;
-        //mensaje con la información del archivo
-        
-    });
+        var fileType = file.type
+        //mensaje con la información del archivo        
+    })
+	
+	
  
     //al enviar el formulario
     $('#registrar').click(function(){
+		console.log("registrar")
         //información del formulario
-        var formData = new FormData($(".formulario")[0]);
-       
+        var formData = new FormData($(".formulario")[0])       
         //hacemos la petición ajax  
         $.ajax({
             url: 'rutas/php/direccion_imagen.php',  
@@ -44,14 +45,14 @@ $(document).ready(function(){
             success: function(data){                
 				var datos=$("#nuevo_articulo input")	
 				var nombre, kilometros, minutos, inicio, destino, consejos, dificultad, num_reservas, direc, mapa
-				nombre=datos[0].value
-				archivo=data
-				kilometros=datos[1].value
-				minutos=parseInt(datos[2].value)
-				inicio=datos[3].value
-				destino=datos[4].value	
-				num_reservas=parseInt(datos[5].value)
-				mapa=datos[6].value	
+				nombre=datos[1].value
+				archivo=data				
+				kilometros=datos[2].value
+				minutos=parseInt(datos[3].value)
+				inicio=datos[4].value
+				destino=datos[5].value	
+				num_reservas=parseInt(datos[6].value)
+				mapa=datos[7].value	
 				consejos=$('#nuevo_articulo textarea').val()
 				dificultad=$('#nuevo_articulo select').val()	
 				
@@ -80,7 +81,7 @@ $(document).ready(function(){
 					   $("#nuevo_articulo input:text").each(function(){
 						   $(this).val("")
 					   })
-					   $('textarea').val("")
+					   $('#nuevo_articulo textarea').val("")
 					   
 					}
 				})
@@ -88,6 +89,84 @@ $(document).ready(function(){
 			}
         })
     })
+	
+	$('#actualizar').click(function(){
+		console.log("actualizar")
+        //información del formulario
+        var formData = new FormData($(".formulario")[0])       
+        //hacemos la petición ajax  
+        $.ajax({
+            url: 'rutas/php/direccion_imagen.php',  
+            type: 'POST',
+            // Form data
+            //datos del formulario
+            data: formData,
+            //necesario para subir archivos via ajax
+            cache: false,
+            contentType: false,			
+            processData: false,
+            
+            //una vez finalizado correctamente
+            success: function(data){                
+				var datos=$("#nuevo_articulo input")	
+				var nombre, kilometros, minutos, inicio, destino, consejos, dificultad, num_reservas, direc, mapa
+				id=datos[0].value
+				nombre=datos[1].value
+							
+				kilometros=datos[2].value
+				minutos=parseInt(datos[3].value)
+				inicio=datos[4].value
+				destino=datos[5].value	
+				num_reservas=parseInt(datos[6].value)
+				mapa=datos[7].value	
+				if(data=="Sin Fichero"){
+					dir_img=datos[8].value
+				}else{
+					dir_img=data
+				}
+				dir_img=data
+				dir_pdf=datos[9].value
+				valoracion=datos[10].value
+				consejos=$('#nuevo_articulo textarea').val()
+				dificultad=$('#nuevo_articulo select').val()	
+				
+				
+				var ruta={
+					id:id,
+					nombre:nombre,
+					kilometros:kilometros,
+					minutos:minutos,
+					inicio:inicio,
+					destino:destino,
+					maximo:num_reservas,
+					mapa:mapa,
+					dificultad:dificultad,					
+					consejos:consejos,
+					dir_img:dir_img,
+					dir_pdf:dir_pdf,
+					valoracion:valoracion
+				}
+				
+				$.ajax({
+					url: 'rutas/php/panel_admin_modificar.php',  
+					type: 'POST',					
+					data: ruta,		
+					success: function(data){                
+					   $('#mensaje').html(data)
+					   cargarRutas()
+					  ocultar()
+					   $("#nuevo_articulo input:text").each(function(){
+						   $(this).val("")
+					   })
+					   $('#nuevo_articulo textarea').val("")
+					   
+					}
+				})
+				
+			}
+        })
+	})
+	
 })
  
 function mostrar(){
@@ -101,12 +180,12 @@ function ocultar(){
 	$('#nuevo_articulo').removeClass('mostrar').addClass('ocultar')	
 }
 
-//comprobamos si el archivo a subir es un pdf
+//comprobamos si el archivo a subir es una imagen
 function isImage(extension)
 {
     switch(extension.toLowerCase()) 
     {
-        case 'pdf':
+        case 'jpg': case 'gif': case 'png': case 'jpeg':
             return true;
         break;
         default:
@@ -126,7 +205,7 @@ function cargarRutas(){
 			var enlace="<table>"
 			for(var x=0;x<data.length;x++){
 				enlace+="<tr>"
-				enlace += "<td><button class='borrar' id='"+data[x].id+"'>Borrar</button><button class='modificar' id='"+data[x].id+"'>Modificar</button></td><td id='ocultar'>"+data[x].id+"</td>"+"<td>"+data[x].nombre+"</td>"+"<td>"+data[x].km+"</td>"+"<td>"+data[x].minutos+"</td>"+"<td>"+data[x].inicio+"</td>"+"<td>"+data[x].destino+"</td>"+"<td>"+data[x].consejos+"</td>"+"<td>"+data[x].dificultad+"</td>"+"<td>"+data[x].valoracion+"</td>"+"<td>"+data[x].pdf+"</td>"+"<td>"+data[x].max_res+"</td>"+"</tr><tr ><td colspan=8>"+data[x].mapa+"</td>"
+				enlace += "<td><button class='borrar' id='"+data[x].id+"'>Borrar</button><button class='modificar' id='"+data[x].id+"'>Modificar</button></td><td id='ocultar'>"+data[x].id+"</td>"+"<td>"+data[x].nombre+"</td>"+"<td>"+data[x].km+"</td>"+"<td>"+data[x].minutos+"</td>"+"<td>"+data[x].inicio+"</td>"+"<td>"+data[x].destino+"</td>"+"<td>"+data[x].consejos+"</td>"+"<td>"+data[x].dificultad+"</td>"+"<td>"+data[x].valoracion+"</td>"+"<td>"+data[x].pdf+"</td>"+"<td>"+data[x].max_res+"</td>"+"</tr><tr >"/*."<td colspan=8>"+data[x].mapa+"</td>"*/
 				enlace+="</tr>"
 			}
 			enlace+="</table>"
@@ -134,19 +213,47 @@ function cargarRutas(){
         $('#mensaje2').html(enlace)
 		$('.modificar').click(modificar)
 		$('.borrar').click(borrar)
+		 var fileExtension = "";
+		
 		}
 	})
 }
 
 function modificar(){
-	var padre=$(this).attr('id')
-	
-	console.log(padre)
-	
+	$('#edit').click(envioModificar)
+	var id=$(this).attr('id')
+	var parametro={
+		"id":id
+	}
+	$.ajax({
+
+		url: 'rutas/php/devolverRuta.php',  
+		type: 'POST',
+		data:parametro,
+		DataType:'Json',		
+		success: function(data){  	
+			var enlace=$('#nuevo_articulo input')	
+			$('#nuevo_articulo textarea').val(data.consejos)	
+			$('#nuevo_articulo select').val(data.dificultad)			
+			$('#nuevo_articulo input[name=id]').val(data.id)
+			$('#nuevo_articulo input[name=nombre]').val(data.nombre)
+			$('#nuevo_articulo input[name=kilometros]').val(data.km)
+			$('#nuevo_articulo input[name=minutos]').val(data.minutos)
+			$('#nuevo_articulo input[name=inicio]').val(data.inicio)
+			$('#nuevo_articulo input[name=destino]').val(data.final)
+			$('#nuevo_articulo input[name=maximo]').val(data.max_res)
+			$('#nuevo_articulo input[name=pdf]').val(data.pdf)
+			$('#nuevo_articulo input[name=mapa]').val(data.mapa)
+			$('#nuevo_articulo input[name=valoracion]').val(data.valoracion)
+			$('#nuevo_articulo input[name=dir_img]').val(data.imagen)
+			
+			console.log(data.consejos)
+		}
+	})	
 }
 
 function borrar(){
-	console.log("ok")
+	
 	var id=$(this).attr('id')
 	var parametro={
 		'id':id
@@ -163,4 +270,83 @@ function borrar(){
 	})
 	
 	
+}
+
+function envioModificar(){
+	var file = $("#Modificar_ruta #imagen")[0].files[0]
+	//obtenemos el nombre del archivo
+	var fileName = file.name
+	//obtenemos la extensión del archivo
+	fileExtension = fileName.substring(fileName.lastIndexOf('.') + 1)
+	//obtenemos el tamaño del archivo
+	var fileSize = file.size
+	//obtenemos el tipo de archivo image/png ejemplo
+	var fileType = file.type
+	//mensaje con la información del archivo
+	var formData = new FormData($(".formulario_edit")[0])       
+        //hacemos la petición ajax  
+	$.ajax({
+		url: 'rutas/php/direccion_imagen.php',  
+		type: 'POST',
+		// Form data
+		//datos del formulario
+		data: formData,
+		//necesario para subir archivos via ajax
+		cache: false,
+		contentType: false,			
+		processData: false,
+		
+		//una vez finalizado correctamente
+		success: function(data){                
+			var datos=$("#Modificar_ruta input")	
+			var id, valoracion, nombre, kilometros, minutos, inicio, destino, consejos, dificultad, num_reservas, direc, mapa
+			nombre=datos[2].value
+			id=datos[0].value
+			valoracion=datos[1].value
+			archivo=data
+			archivo=datos[9].value				
+			kilometros=datos[3].value
+			minutos=parseInt(datos[4].value)
+			inicio=datos[5].value
+			destino=datos[6].value	
+			num_reservas=parseInt(datos[7].value)
+			mapa=datos[8].value	
+			consejos=$('#Modificar_ruta textarea').val()
+			dificultad=$('#Modificar_ruta select').val()	
+			console.log(archivo)
+			console.log(data)
+			var ruta={
+				id:id,
+				valoracion:valoracion,
+				nombre:nombre,
+				kilometros:kilometros,
+				minutos:minutos,
+				inicio:inicio,
+				destino:destino,
+				maximo:num_reservas,
+				mapa:mapa,
+				dificultad:dificultad,
+				archivo:archivo,
+				consejos:consejos
+			}
+			
+			$.ajax({
+				url: 'rutas/php/panel_admin_modificar.php',  
+				type: 'POST',					
+				data: ruta,		
+				success: function(data){                
+				   
+				   cargarRutas()
+				  ocultar()
+				   $("#Modificar_ruta input:text").each(function(){
+					   $(this).val("")
+				   })
+				   $('#Modificar_ruta textarea').val("")
+				   
+				}
+			})
+			
+		}
+	})
+    
 }
