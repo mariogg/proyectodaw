@@ -48,7 +48,8 @@ function guardarHospedaje(){
 		success:function(respuesta) {	
 			$('#mensaje').html("")	
 			mostrar()
-			$('#mensaje').html(respuesta)	
+			$('#mensaje').html(respuesta)
+			limpiar()			
 		}            
 	})
 }
@@ -129,7 +130,18 @@ function actualizar(){
 		success:function(respuesta) {	
 			$('#mensaje').html("")	
 			mostrar()
-			$('#mensaje').html(respuesta)	
+			$('#mensaje').html(respuesta)
+			limpiar()			
 		}            
 	})
+}
+
+function limpiar(){
+	
+			$('#annadir input[name=id]').val("")
+			$('#annadir input[name=nombre]').val("")
+			$('#annadir input[name=direccion]').val("")
+			$('#annadir input[name=telefono]').val("")
+			$('#annadir input[name=email]').val("")
+			$('#annadir input[name=web]').val("")
 }
