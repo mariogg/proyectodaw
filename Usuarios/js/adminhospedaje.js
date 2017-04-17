@@ -45,9 +45,10 @@ function guardarHospedaje(){
 		url:'Usuarios/php/guardarHospedaje.php',
 		type:'post',
 		data:envio,                     
-		success:function(respuesta) {
-			console.log("Respuesta del servidor: "+respuesta)
+		success:function(respuesta) {	
+			$('#mensaje').html("")	
 			mostrar()
+			$('#mensaje').html(respuesta)	
 		}            
 	})
 }
@@ -62,14 +63,12 @@ function borrar(){
 	var id=$(this).attr("id")
 	envia={
 		id:id
-	}
-	console.log(id)
+	}	
 	$.ajax({            
 		url:'Usuarios/php/borrarHospedaje.php',
 		type:'post',
 		data:envia,                     
-		success:function(respuesta) {
-			console.log(respuesta)
+		success:function(respuesta) {			
 			$('#mensaje').html(respuesta)			
 			mostrar()
 		}            
