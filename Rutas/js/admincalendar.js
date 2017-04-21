@@ -49,14 +49,17 @@ function cargarRutas(){
 }
 
 
+
+
+
 // visualiza las rutas fijadas para la fecha que se seleccione
+
 function mostrarC(){
 	var dato=$('#datepicker').val()
 	var fecha={
 		fecha:dato
 	}
-	
-	
+
 	$.ajax({
 		url: 'rutas/php/panel_calendario_verCalendario.php',  
 		type: 'POST',
@@ -75,16 +78,25 @@ function mostrarC(){
 					enlace+="</tr>"
 				}
 			enlace+="</table></fieldset>"
+
+			}			
+		   $('#fechas').html(enlace)				   
+
 			}
 		   
 		   $('#fechas').html(enlace)
 		   $('.borrar').click(borrarRuta)
 		   comprobarMaximo()		   
+
 		}
 	})
 }
 
+r
+
+
 // visualiz todas las rutas fijadas
+
 function mostrarT(){	
 	
 	$.ajax({
@@ -106,9 +118,11 @@ function mostrarT(){
 			enlace+="</table></fieldset>"
 			}		
 			
-		    $('#todas_fechas').html(enlace)
+		    $('#todas_fechas').html(enlace)	   
+
 			$('.borrar').click(borrarRuta)
 			comprobarMaximo()			
+
 		}
 	})
 }
@@ -188,7 +202,10 @@ function devolverNombre(id){
 	var contador=0
 	var encontrado=true
 	while(encontrado){
+
+
 		if(dureza[contador][2]==id){			
+
 			encontrado=false					
 			respuesta = dureza[contador][0]
 			contador=0
@@ -212,6 +229,11 @@ function borrarRuta(){
 		   $('#mensaje').html(data)
 		   mostrarC()
 		   mostrarT()
+
+		}
+	})
+}
+
 		   comprobarMaximo()
 		}
 	})
@@ -228,3 +250,4 @@ function comprobarMaximo(){
 	
 	console.log(dato.length)
 }
+
