@@ -82,17 +82,17 @@ function mostrarC(){
 			}			
 		   $('#fechas').html(enlace)				   
 
-			}
+			
 		   
 		   $('#fechas').html(enlace)
 		   $('.borrar').click(borrarRuta)
 		   comprobarMaximo()		   
+			}
+		})
+	}
 
-		}
-	})
-}
 
-r
+
 
 
 // visualiz todas las rutas fijadas
@@ -229,15 +229,13 @@ function borrarRuta(){
 		   $('#mensaje').html(data)
 		   mostrarC()
 		   mostrarT()
-
+comprobarMaximo()
 		}
 	})
 }
 
-		   comprobarMaximo()
-		}
-	})
-}
+		   
+		
 
 function comprobarMaximo(){
 	console.log("dentro")
