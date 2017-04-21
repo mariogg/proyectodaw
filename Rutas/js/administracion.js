@@ -180,7 +180,11 @@ function ocultar(){
 	$('#nuevo_articulo').removeClass('mostrar').addClass('ocultar')	
 }
 
-//comprobamos si el archivo a subir es un pdf
+
+
+
+//comprobamos si el archivo a subir es una imagen
+
 function isImage(extension)
 {
     switch(extension.toLowerCase()) 
@@ -273,6 +277,7 @@ function borrar(){
 }
 
 function envioModificar(){
+
 	var file = $("#Modificar_ruta #imagen")[0].files[0];
 			//obtenemos el nombre del archivo
 			var fileName = file.name;
@@ -348,5 +353,81 @@ function envioModificar(){
 				
 			}
         })
+
+	var file = $("#Modificar_ruta #imagen")[0].files[0]
+	//obtenemos el nombre del archivo
+	var fileName = file.name
+	//obtenemos la extensión del archivo
+	fileExtension = fileName.substring(fileName.lastIndexOf('.') + 1)
+	//obtenemos el tamaño del archivo
+	var fileSize = file.size
+	//obtenemos el tipo de archivo image/png ejemplo
+	var fileType = file.type
+	//mensaje con la información del archivo
+	var formData = new FormData($(".formulario_edit")[0])       
+        //hacemos la petición ajax  
+	$.ajax({
+		url: 'rutas/php/direccion_imagen.php',  
+		type: 'POST',
+		// Form data
+		//datos del formulario
+		data: formData,
+		//necesario para subir archivos via ajax
+		cache: false,
+		contentType: false,			
+		processData: false,
+		
+		//una vez finalizado correctamente
+		success: function(data){                
+			var datos=$("#Modificar_ruta input")	
+			var id, valoracion, nombre, kilometros, minutos, inicio, destino, consejos, dificultad, num_reservas, direc, mapa
+			nombre=datos[2].value
+			id=datos[0].value
+			valoracion=datos[1].value
+			archivo=data
+			archivo=datos[9].value				
+			kilometros=datos[3].value
+			minutos=parseInt(datos[4].value)
+			inicio=datos[5].value
+			destino=datos[6].value	
+			num_reservas=parseInt(datos[7].value)
+			mapa=datos[8].value	
+			consejos=$('#Modificar_ruta textarea').val()
+			dificultad=$('#Modificar_ruta select').val()	
+			console.log(archivo)
+			console.log(data)
+			var ruta={
+				id:id,
+				valoracion:valoracion,
+				nombre:nombre,
+				kilometros:kilometros,
+				minutos:minutos,
+				inicio:inicio,
+				destino:destino,
+				maximo:num_reservas,
+				mapa:mapa,
+				dificultad:dificultad,
+				archivo:archivo,
+				consejos:consejos
+			}
+			
+			$.ajax({
+				url: 'rutas/php/panel_admin_modificar.php',  
+				type: 'POST',					
+				data: ruta,		
+				success: function(data){                
+				   
+				   cargarRutas()
+				  ocultar()
+				   $("#Modificar_ruta input:text").each(function(){
+					   $(this).val("")
+				   })
+				   $('#Modificar_ruta textarea').val("")
+				   
+				}
+			})
+			
+		}
+
     
 }

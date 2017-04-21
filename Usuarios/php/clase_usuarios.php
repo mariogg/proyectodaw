@@ -1,9 +1,9 @@
 <?php
-<<<<<<< HEAD
+
 
 class Usuarios{
-=======
->>>>>>> refs/remotes/origin/master
+
+
 
     class Usuarios{
         
@@ -35,8 +35,9 @@ class Usuarios{
             
             return $mensaje;
         }
-<<<<<<< HEAD
+
     }
+
 
     function comprobarLogueo($nick) {
         $consulta = "select * from usuarios where USUARIO='$nick'";
@@ -64,8 +65,12 @@ class Usuarios{
             return $resul;
         }else {
             return 0;
-=======
-        
+
+
+		}
+		
+	}
+
         
         //Hace un update a la base de datos para modificar parámetros de usuario
         function modificarUsuario($id,$usuario,$correo,$dni,$nombre,$apellidos,$fecna,$telefono,$perfil) {
@@ -107,7 +112,7 @@ class Usuarios{
             if($resultado=$this->conexion->query($consulta)) {
                 return $resultado;
             }
->>>>>>> refs/remotes/origin/master
+
         }
 
 
