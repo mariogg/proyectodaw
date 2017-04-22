@@ -1,42 +1,43 @@
 <!DOCTYPE html>
 <html lang="">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css">
         <script  src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
         <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
         <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
-        <script  src="Usuarios/js/administracionGuias.js"></script>
-    <title></title>
-</head>
+        <script  src="Rutas/js/administracionGuias.js"></script>
+        <title></title>
+    </head>
 
-<body>
-    <nav id="nav">
-        <form id="insertGuia">
-        <div>Introducir guías:</div>
-        <div>Nick del guía: <input type="text" name="nombreGuia" id="nombreGuia"/></div>
-        <div>Experiencia: <textarea id="experiencia" cols="50" rows="20"></textarea></div>
-        <div>Imagen: <input type="file" name="fotoGuia" id="fotoGuia"/></div>
-        <div><input type="button" name="enviar" id="enviar" value="Enviar"/></div>    
-        </form>    
-    </nav>
-    <nav id="nav">
-        <form id="deleteGuia">
-            <div>Borrar guía: </div>
-            <div>Id del guía: <input type="text" name="idGuia" id="idGuia"/></div>
-            <div><input type="text" name="nickGuia" id="nickGuia"/></div>
-            <div><input type="button" name="enviar" id="enviar" value="Enviar"/></div>
-        </form>
-    </nav>
-    <nav id="nav">
-        <form id="modificarGuia">
-            <div>Modificar guía: </div>
-            <div>Nick del guía: <input type="text" name="nickGuia" id="nickGuia"/></div>
-            <div>Experiencia: <textarea id="experiencia" cols="50" rows="20"></textarea></div>
-            <div>Imagen: <input type="file" name="imagenGuia" id="imagenGuia"/></div>
-            <div><input type="button" name="enviar" id="enviar" value="Enviar"/></div>
-        </form>
-    </nav>
-</body>
+    <body>
+        <nav id="nav">
+            <form id="insertGuia">
+                <div>Introducir guías:</div>
+                <div>Nick del guía: <input type="text" name="nombreGuia" id="nombreGuia"/></div>
+                <div>Experiencia: <textarea id="experiencia" cols="50" rows="20"></textarea></div>
+                <div>Imagen: <input type="file" name="fotoGuia" id="fotoGuia"/></div>
+                <div><input type="button" name="insertar" id="insertar" value="Enviar"/></div>    
+            </form>    
+        </nav>
+        <nav id="nav">
+            <form id="deleteGuia">
+                <div>Borrar guía: </div>
+                <div>Id del guía: <input type="text" name="idGuia" id="idGuia"/></div>
+                <div><input type="text" name="nickGuia" id="nickGuia"/></div>
+                <div><input type="button" name="borrar" id="borrar" value="Enviar"/></div>
+            </form>
+        </nav>
+        <nav id="nav">
+            <form id="modificarGuia">
+                <div>Modificar guía: </div>
+                <div>Nick del guía: <input type="text" name="nickGuia" id="nickGuia"/></div>
+                <div>Experiencia: <textarea id="experiencia" cols="50" rows="20"></textarea></div>
+                <div>Imagen: <input type="file" name="imagenGuia" id="imagenGuia"/></div>
+                <div><input type="button" name="modificar" id="modificar" value="Enviar"/></div>
+            </form>
+        </nav>
+        <div id="resultado"></div>
+    </body>
 </html>
