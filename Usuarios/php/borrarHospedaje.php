@@ -1,6 +1,6 @@
 <?php
 	include 'clase_hospedajes.php';
-	$nombre=$_POST['id'];	
+	$id=$_POST['id'];	
 	
 	$enlace = new hospedaje();	
 	$resultado=$enlace->borrarHospedaje($id);		

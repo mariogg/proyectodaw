@@ -1,5 +1,6 @@
 <?php
 	include 'clase_hospedajes.php';
+	$id=$_POST['id'];
 	$nombre=$_POST['nombre'];
 	$localidad=$_POST['localidad'];
 	$direccion=$_POST['direccion'];
@@ -22,7 +23,7 @@
 	}*/
 	
 	$enlace = new hospedaje();	
-	$resultado=$enlace->insertarHospedaje($nombre, $localidad, $descripcion, $web);	
+	$resultado=$enlace->editarHospedaje($id, $nombre, $localidad, $descripcion, $web);	
 	
 	echo $resultado;
 	$enlace->desconectar();

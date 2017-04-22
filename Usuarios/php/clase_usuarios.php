@@ -1,5 +1,10 @@
 <?php
 
+
+class Usuarios{
+
+
+
     class Usuarios{
         
         public $conexion="";
@@ -31,7 +36,8 @@
             return $mensaje;
         }
 
-    
+    }
+
 
     function comprobarLogueo($nick) {
         $consulta = "select * from usuarios where USUARIO='$nick'";
@@ -60,9 +66,11 @@
         }else {
             return 0;
 
+
 		}
 		
 	}
+
         
         //Hace un update a la base de datos para modificar parámetros de usuario
         function modificarUsuario($id,$usuario,$correo,$dni,$nombre,$apellidos,$fecna,$telefono,$perfil) {

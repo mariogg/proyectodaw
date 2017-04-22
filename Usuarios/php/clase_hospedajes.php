@@ -37,6 +37,13 @@
 			}
 		}
 		
+		function unHospedaje($id){
+			$consulta="select * from hospedajes where ID=".$id;
+			if($resultado=$this->conexion->query($consulta)){
+				return $resultado;
+			}
+		}
+		
 		function borrarHospedaje($id){
 			$consulta="delete from hospedajes where id=".$id;
 			if($resultado=$this->conexion->query($consulta)){
@@ -44,6 +51,17 @@
 			}else{
 				return "No se ha podido borrar";
 			}
+		}
+		
+		function editarHospedaje($id, $nombre, $localidad, $descripcion, $pagina){
+			$mensaje="";			
+			$consulta="update hospedajes set NOMBRE='".$nombre."', LOCALIDAD='".$localidad."', DESCRIPCION='".$descripcion."', PAGINA_WEB='".$pagina."' where ID=".$id;
+			if($resultado=$this->conexion->query($consulta)){
+				$mensaje="Editado hospedaje";
+			}else{
+				$mensaje="No se ha podidoeditar el hospedaje";
+			}
+			return $mensaje;			
 		}
 		
 		function desconectar(){
