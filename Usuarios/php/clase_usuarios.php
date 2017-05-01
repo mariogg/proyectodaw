@@ -16,13 +16,11 @@ class Usuarios{
 	
 	
 	//Hace un insert a la base de datos para añadir usuarios
-
-	function nuevoUsuario($usuario,$correo,$dni,$nombre,$apellidos,$fecna,$telefono,$perfil) {
+	function nuevoUsuario($usuario,$correo,$dni,$nombre,$apellidos,$fecna,$telefono,$perfil,$password) {
 		
 		$mensaje = "";
 		
-		$consulta = "insert into usuarios (USUARIO,CORREO,DNI,NOMBRE,APELLIDOS,FECNA,TELEFONO,PERFIL) values ('$usuario','$correo','$dni','$nombre','$apellidos','$fecna',$telefono,'$perfil')";
-
+		$consulta = "insert into usuarios (USUARIO,CORREO,DNI,NOMBRE,APELLIDOS,FECNA,TELEFONO,PERFIL,PASSWORD) values ('$usuario','$correo','$dni','$nombre','$apellidos','$fecna',$telefono,'$perfil','$password')";
 		
 		if($resultado = $this->conexion->query($consulta)) {
 			$mensaje = "Se ha introducido un nuevo usuario";
@@ -89,9 +87,9 @@ class Usuarios{
 		return $mensaje;
 	}
 	
-	function seleccionarTodosLosUsuarios($id,$usuario,$correo,$dni,$nombre,$apellidos,$fecna,$telefono,$perfil) {
+	function seleccionarTodosLosUsuarios() {
 		$consulta = "select * from usuarios";
-		if($resultado->conexion->query($consulta)) {
+		if($resultado = $this->conexion->query($consulta)) {
 			return $resultado;
 		}
 	}
