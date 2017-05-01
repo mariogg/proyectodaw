@@ -16,11 +16,11 @@ class Usuarios{
 	
 	
 	//Hace un insert a la base de datos para añadir usuarios
-	function nuevoUsuario($usuario,$correo,$dni,$nombre,$apellidos,$fecna,$telefono,$perfil) {
+	function nuevoUsuario($usuario,$correo,$dni,$nombre,$apellidos,$fecna,$telefono,$perfil,$password) {
 		
 		$mensaje = "";
 		
-		$consulta = "insert into usuarios (USUARIO,CORREO,DNI,NOMBRE,APELLIDOS,FECNA,TELEFONO,PERFIL) values ('$usuario','$correo','$dni','$nombre','$apellidos','$fecna',$telefono,'$perfil')";
+		$consulta = "insert into usuarios (USUARIO,CORREO,DNI,NOMBRE,APELLIDOS,FECNA,TELEFONO,PERFIL,PASSWORD) values ('$usuario','$correo','$dni','$nombre','$apellidos','$fecna',$telefono,'$perfil','$password')";
 		
 		if($resultado = $this->conexion->query($consulta)) {
 			$mensaje = "Se ha introducido un nuevo usuario";
@@ -32,7 +32,7 @@ class Usuarios{
 	}
     
     function comprobarLogueo($nick) {
-        $consulta = "select * from usuarios where USUARIO='$nick'";
+        $consulta = "select USUARIO,CORREO,DNI,NOMBRE,APELLIDOS,FECNA,TELEFONO,PASSWORD,perfilusuario.PERFIL as PERFIL from usuarios join perfilusuario on perfilusuario.IDPERFIL = usuarios.PERFIL where USUARIO='$nick'";
         $resul="";
         if($resultado=$this->conexion->query($consulta)) {
             while($fila=$resultado->fetch_assoc()){ 
