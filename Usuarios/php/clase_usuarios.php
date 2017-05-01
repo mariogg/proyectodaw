@@ -16,11 +16,13 @@ class Usuarios{
 	
 	
 	//Hace un insert a la base de datos para añadir usuarios
-	function nuevoUsuario($usuario,$correo,$dni,$nombre,$apellidos,$fecna,$telefono,$perfil,$password) {
+
+	function nuevoUsuario($usuario,$correo,$dni,$nombre,$apellidos,$fecna,$telefono,$perfil) {
 		
 		$mensaje = "";
 		
-		$consulta = "insert into usuarios (USUARIO,CORREO,DNI,NOMBRE,APELLIDOS,FECNA,TELEFONO,PERFIL,PASSWORD) values ('$usuario','$correo','$dni','$nombre','$apellidos','$fecna',$telefono,'$perfil','$password')";
+		$consulta = "insert into usuarios (USUARIO,CORREO,DNI,NOMBRE,APELLIDOS,FECNA,TELEFONO,PERFIL) values ('$usuario','$correo','$dni','$nombre','$apellidos','$fecna',$telefono,'$perfil')";
+
 		
 		if($resultado = $this->conexion->query($consulta)) {
 			$mensaje = "Se ha introducido un nuevo usuario";

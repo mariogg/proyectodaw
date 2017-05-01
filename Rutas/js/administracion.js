@@ -1,5 +1,30 @@
+var localidades=['Abadía','Aldeanueva del Camino','Baños de Montemayor','Gargantilla','Casas del Monte','Segura del Toro','Gargantilla','Hervás']
+var dificultades=['Baja', 'Media', 'Alta']
+function buscarLoc(local){
+	
+	var resultado=0
+	for (var x=0;x<localidades.length;x++){
+		
+		if(localidades[x]==local){
+			
+			resultado=x+1
+		}
+	}
+	console.log(resultado)
+	return resultado
+}
+function buscarDif(dificu){
+	var resultado=0
+	for (var x=0;x<dificultad.length;x++){
+		if(dificultades[x]==dificu){
+			resultado=x+1
+		}
+	}
+	return resultado
+}
+
 $(document).ready(function(){   
-	console.log("inicio")
+	
 	cargarRutas()
     mostrar()
 	$('#oculto').click(ocultar)
@@ -26,7 +51,7 @@ $(document).ready(function(){
  
     //al enviar el formulario
     $('#registrar').click(function(){
-		console.log("registrar")
+		
         //información del formulario
         var formData = new FormData($(".formulario")[0])       
         //hacemos la petición ajax  
@@ -42,27 +67,27 @@ $(document).ready(function(){
             processData: false,
             
             //una vez finalizado correctamente
-            success: function(data){                
+            success: function(data){   
+		
 				var datos=$("#nuevo_articulo input")	
-				var nombre, kilometros, minutos, inicio, destino, consejos, dificultad, num_reservas, direc, mapa
+				var nombre, kilometros, minutos, localidad, consejos, dificultad, num_reservas, direc, mapa
 				nombre=datos[1].value
 				archivo=data				
 				kilometros=datos[2].value
-				minutos=parseInt(datos[3].value)
-				inicio=datos[4].value
-				destino=datos[5].value	
-				num_reservas=parseInt(datos[6].value)
-				mapa=datos[7].value	
+				minutos=parseInt(datos[3].value)					
+				num_reservas=parseInt(datos[4].value)
+				mapa=datos[5].value	
 				consejos=$('#nuevo_articulo textarea').val()
-				dificultad=$('#nuevo_articulo select').val()	
-				
+				valor=$('#nuevo_articulo #dificultad').val()
+				dificultad=buscarDif(valor)
+				valor2=$('#nuevo_articulo #localidad').val()			
+				localidad=buscarLoc(valor2)
 				
 				var ruta={
 					nombre:nombre,
 					kilometros:kilometros,
 					minutos:minutos,
-					inicio:inicio,
-					destino:destino,
+					localidad:localidad,
 					maximo:num_reservas,
 					mapa:mapa,
 					dificultad:dificultad,
@@ -112,23 +137,23 @@ $(document).ready(function(){
 				var nombre, kilometros, minutos, inicio, destino, consejos, dificultad, num_reservas, direc, mapa
 				id=datos[0].value
 				nombre=datos[1].value
-							
 				kilometros=datos[2].value
-				minutos=parseInt(datos[3].value)
-				inicio=datos[4].value
-				destino=datos[5].value	
-				num_reservas=parseInt(datos[6].value)
-				mapa=datos[7].value	
+				minutos=parseInt(datos[3].value)					
+				num_reservas=parseInt(datos[4].value)
+				mapa=datos[5].value	
+				consejos=$('#nuevo_articulo textarea').val()
+				valor=$('#nuevo_articulo #dificultad').val()
+				dificultad=buscarDif(valor)
+				valor2=$('#nuevo_articulo #localidad').val()			
+				localidad=buscarLoc(valor2)	
 				if(data=="Sin Fichero"){
-					dir_img=datos[8].value
+					dir_img=datos[7].value
 				}else{
 					dir_img=data
-				}
-				dir_img=data
-				dir_pdf=datos[9].value
-				valoracion=datos[10].value
-				consejos=$('#nuevo_articulo textarea').val()
-				dificultad=$('#nuevo_articulo select').val()	
+				}				
+				dir_pdf=datos[6].value
+				valoracion=datos[8].value
+					
 				
 				
 				var ruta={
@@ -136,8 +161,7 @@ $(document).ready(function(){
 					nombre:nombre,
 					kilometros:kilometros,
 					minutos:minutos,
-					inicio:inicio,
-					destino:destino,
+					localidad:localidad,
 					maximo:num_reservas,
 					mapa:mapa,
 					dificultad:dificultad,					
@@ -146,7 +170,7 @@ $(document).ready(function(){
 					dir_pdf:dir_pdf,
 					valoracion:valoracion
 				}
-				
+				console.log(ruta)
 				$.ajax({
 					url: 'rutas/php/panel_admin_modificar.php',  
 					type: 'POST',					
@@ -203,9 +227,11 @@ function cargarRutas(){
 		success: function(data){  	
 			$('#mensaje2').html("")
 			var enlace="<table>"
+			
 			for(var x=0;x<data.length;x++){
+				
 				enlace+="<tr>"
-				enlace += "<td><button class='borrar' id='"+data[x].id+"'>Borrar</button><button class='modificar' id='"+data[x].id+"'>Modificar</button></td><td id='ocultar'>"+data[x].id+"</td>"+"<td>"+data[x].nombre+"</td>"+"<td>"+data[x].km+"</td>"+"<td>"+data[x].minutos+"</td>"+"<td>"+data[x].inicio+"</td>"+"<td>"+data[x].destino+"</td>"+"<td>"+data[x].consejos+"</td>"+"<td>"+data[x].dificultad+"</td>"+"<td>"+data[x].valoracion+"</td>"+"<td>"+data[x].pdf+"</td>"+"<td>"+data[x].max_res+"</td>"+"</tr><tr >"/*."<td colspan=8>"+data[x].mapa+"</td>"*/
+				enlace += "<td><button class='borrar' id='"+data[x].id+"'>Borrar</button><button class='modificar' id='"+data[x].id+"'>Modificar</button></td><td id='ocultar'>"+data[x].id+"</td>"+"<td>"+data[x].nombre+"</td>"+"<td>"+data[x].km+"</td>"+"<td>"+data[x].minutos+"</td>"+"<td>"+data[x].localidad+"</td>"+"<td>"+data[x].consejos+"</td>"+"<td>"+data[x].dificultad+"</td>"+"<td>"+data[x].valoracion+"</td>"+"<td>"+data[x].pdf+"</td>"+"<td>"+data[x].max_res+"</td>"+"</tr><tr >"+"<td colspan=8>"+data[x].mapa+"</td>"
 				enlace+="</tr>"
 			}
 			enlace+="</table>"
@@ -232,6 +258,7 @@ function modificar(){
 		data:parametro,
 		DataType:'Json',		
 		success: function(data){  	
+		console.log("dentro")
 			var enlace=$('#nuevo_articulo input')	
 			$('#nuevo_articulo textarea').val(data.consejos)	
 			$('#nuevo_articulo select').val(data.dificultad)			
@@ -239,18 +266,19 @@ function modificar(){
 			$('#nuevo_articulo input[name=nombre]').val(data.nombre)
 			$('#nuevo_articulo input[name=kilometros]').val(data.km)
 			$('#nuevo_articulo input[name=minutos]').val(data.minutos)
-			$('#nuevo_articulo input[name=inicio]').val(data.inicio)
-			$('#nuevo_articulo input[name=destino]').val(data.final)
+			$('#nuevo_articulo input[name=l]').val(data.inicio)
 			$('#nuevo_articulo input[name=maximo]').val(data.max_res)
 			$('#nuevo_articulo input[name=pdf]').val(data.pdf)
 			$('#nuevo_articulo input[name=mapa]').val(data.mapa)
 			$('#nuevo_articulo input[name=valoracion]').val(data.valoracion)
 			$('#nuevo_articulo input[name=dir_img]').val(data.imagen)
+			$('#nuevo_articulo #localidad').val(data.localidad)
 			
-			console.log(data.consejos)
 		}
 	})	
 }
+
+
 
 function borrar(){
 	
@@ -273,7 +301,9 @@ function borrar(){
 }
 
 function envioModificar(){
-	var file = $("#Modificar_ruta #imagen")[0].files[0]
+
+	/*var file = $("#Modificar_ruta #imagen")[0].files[0]
+
 	//obtenemos el nombre del archivo
 	var fileName = file.name
 	//obtenemos la extensión del archivo
@@ -283,7 +313,7 @@ function envioModificar(){
 	//obtenemos el tipo de archivo image/png ejemplo
 	var fileType = file.type
 	//mensaje con la información del archivo
-	var formData = new FormData($(".formulario_edit")[0])       
+	var formData = new FormData($(".formulario_edit")[0]) */      
         //hacemos la petición ajax  
 	$.ajax({
 		url: 'rutas/php/direccion_imagen.php',  

@@ -56,6 +56,7 @@ function cargarRutas(){
 
 function mostrarC(){
 	var dato=$('#datepicker').val()
+	
 	var fecha={
 		fecha:dato
 	}
@@ -71,10 +72,15 @@ function mostrarC(){
 				$('#fechas').html("")
 			}else{
 				var enlace="<fieldset><legend>Rutas en este Fecha</legend><table>"
-			
+				console.log("ver: "+data[x].fecha)
 				for(var x=0;x<data.length;x++){
+					var fech=data[x].fecha.split("-")
+					var anio=fech[0]
+					var mes=fech[1]
+					var dia=fech[2]
+					fecha=dia+"/"+mes+"/"+anio
 					enlace+="<tr>"
-					enlace += "<td><button class='borrar' id='"+data[x].id+"'>Borrar</button></td><td>"+devolverNombre(data[x].id_ruta)+"</td>"+"<td>"+data[x].id_ruta+"</td>"+"<td>"+data[x].fecha+"</td>"
+					enlace += "<td><button class='borrar' id='"+data[x].id+"'>Borrar</button></td><td>"+devolverNombre(data[x].id_ruta)+"</td>"+"<td>"+data[x].id_ruta+"</td>"+"<td>"+fecha+"</td>"
 					enlace+="</tr>"
 				}
 			enlace+="</table></fieldset>"
@@ -111,8 +117,13 @@ function mostrarT(){
 				var enlace="<fieldset><legend>Rutas creadas</legend><table>"
 			
 				for(var x=0;x<data.length;x++){
+					var fech=data[x].fecha.split("-")
+					var anio=fech[0]
+					var mes=fech[1]
+					var dia=fech[2]
+					fecha=dia+"/"+mes+"/"+anio
 					enlace+="<tr>"
-					enlace += "<td><button class='borrar' id='"+data[x].id+"'>Borrar</button></td><td>"+devolverNombre(data[x].id_ruta)+"</td>"+"<td>"+data[x].id_ruta+"</td>"+"<td>"+data[x].fecha+"</td>"
+					enlace += "<td><button class='borrar' id='"+data[x].id+"'>Borrar</button></td><td>"+devolverNombre(data[x].id_ruta)+"</td>"+"<td>"+data[x].id_ruta+"</td>"+"<td>"+fecha+"</td>"
 					enlace+="</tr>"
 				}
 			enlace+="</table></fieldset>"
@@ -157,18 +168,24 @@ $(document).ready(function(){
 		$('#guardar').click(function(){
 			$('#mensaje').html("")
 			var fecha=$("#datepicker").val()
+			var fechax=fecha.split("/")
+			
+			var anio=fechax[2]
+			var mes=fechax[1]
+			var dia=fechax[0]			
+			var fecha2=anio+'/'+mes+'/'+dia			
 			var ruta=$('#listado').val()
-			console.log(ruta)
+			console.log("Guardar: "+fecha2)
 			var encontrado=true
-				contador=0
-				while(encontrado){
-					if(dureza[contador][0]==ruta){
-						encontrado=false					
-						var id = dureza[contador][2]
-						contador=0
-					}
-					contador++
+			contador=0
+			while(encontrado){
+				if(dureza[contador][0]==ruta){
+					encontrado=false					
+					var id = dureza[contador][2]
+					contador=0
 				}
+				contador++
+			}
 			
 			if(fecha == "" || ruta == ""){
 				$('#mensaje').html("Introduce todos los datos")
@@ -176,9 +193,9 @@ $(document).ready(function(){
 			else{
 				var datos={
 					ruta:id,
-					fecha:fecha
+					fecha:fecha2
 				}
-				console.log(datos.ruta+" "+datos.fecha)
+				console.log(datos)
 				$.ajax({
 					url: 'rutas/php/panel_calendario_registro.php',  
 					type: 'POST',					
@@ -238,7 +255,7 @@ comprobarMaximo()
 		
 
 function comprobarMaximo(){
-	console.log("dentro")
+	
 	var dato=$('#fechas tr' )
 	if(dato.length==2){
 		$(' #guardar').attr("disabled" , true)
@@ -246,6 +263,6 @@ function comprobarMaximo(){
 		$(' #guardar').attr("disabled" , false)
 	}
 	
-	console.log(dato.length)
+	
 }
 
