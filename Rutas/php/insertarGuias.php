@@ -5,10 +5,7 @@
     $experiencia = $_REQUEST['experiencia'];
     
 
-    $imagen=$_REQUEST['imagen']['name'];
-    $ruta=$_REQUEST['imagen']['tmp_name'];
-    $destino="./imagenesGuias/" . $imagen;
-    copy($ruta,$destino);
+    
 
     $resultado = new guias();
 
