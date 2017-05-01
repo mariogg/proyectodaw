@@ -301,7 +301,9 @@ function borrar(){
 }
 
 function envioModificar(){
+
 	/*var file = $("#Modificar_ruta #imagen")[0].files[0]
+
 	//obtenemos el nombre del archivo
 	var fileName = file.name
 	//obtenemos la extensión del archivo
