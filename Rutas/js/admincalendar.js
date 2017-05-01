@@ -87,7 +87,7 @@ function mostrarC(){
 					var dia=fech[2]
 					fecha=dia+"/"+mes+"/"+anio
 					enlace+="<tr>"
-					enlace += "<td><button class='borrar' id='"+data[x].id+"'>Borrar</button></td><td>"+devolverNombre(data[x].id_ruta)+"</td>"+"<td>"+data[x].id_ruta+"</td>"+"<td>"+data[x].fecha+"</td>"
+					enlace += "<td><button class='borrar' id='"+data[x].id+"'>Borrar</button></td><td>"+devolverNombre(data[x].id_ruta)+"</td>"+"<td>"+data[x].id_ruta+"</td>"+"<td>"+fecha+"</td>"
 					enlace+="</tr>"
 				}
 			enlace+="</table></fieldset>"
