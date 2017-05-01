@@ -1,3 +1,19 @@
+var localidades=['Abadía','Aldeanueva del Camino','Baños de Montemayor','Gargantilla','Casas del Monte','Segura del Toro','Gargantilla','Hervás']
+
+function buscarLoc(local){
+	console.log("dentro de buscar")
+	var resultado=0
+	for (var x=0;x<localidades.length;x++){
+		
+		if(localidades[x]==local){
+			
+			resultado=x+1
+		}
+	}
+	
+	return resultado
+}
+
 function mostrar(){
 	var pueblo=$('#hospedaje').val()
 		datos={
@@ -33,9 +49,11 @@ function guardarHospedaje(){
 	var email=datos[4].value
 	var web=datos[5].value
 	
+	var local=buscarLoc(localidad)
+	
 	var envio={
 		nombre:nombre,
-		localidad:localidad,
+		localidad:local,
 		direccion:direccion,
 		telefono:telefono,
 		email:email,
@@ -90,7 +108,7 @@ function modificar(){
 		DataType:'Json',
 		data:envia,                     
 		success:function(datos) {			
-			console.log(datos[0].id)
+			
 			$('#localidad').val(datos[0].localidad)	
 			$('#annadir input[name=id]').val(datos[0].id)
 			$('#annadir input[name=nombre]').val(datos[0].nombre)
@@ -105,6 +123,7 @@ function modificar(){
 }
 
 function actualizar(){
+	console.log('dentro')
 	var datos=$('#annadir input')
 	var id=datos[0].value
 	var nombre=datos[1].value
@@ -113,11 +132,12 @@ function actualizar(){
 	var telefono=datos[3].value
 	var email=datos[4].value
 	var web=datos[5].value
-	
+	var local=buscarLoc(localidad)
+	console.log('topota, '+local)
 	var envio={
 		id:id,
 		nombre:nombre,
-		localidad:localidad,
+		localidad:local,
 		direccion:direccion,
 		telefono:telefono,
 		email:email,

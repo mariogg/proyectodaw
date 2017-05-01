@@ -1,3 +1,4 @@
+
 var dureza=[]
 
 function noExcursion(date){

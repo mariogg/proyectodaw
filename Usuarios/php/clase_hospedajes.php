@@ -24,7 +24,7 @@
 		}
 		
 		function mostrarHospedajeTodos(){
-			$consulta="select * from hospedajes";
+			$consulta="select hospedajes.ID, hospedajes.NOMBRE, hospedajes.DESCRIPCION, hospedajes.PAGINA_WEB, localidades.LOCALIDAD from hospedajes join localidades on localidades.ID_LOCALIDAD = hospedajes.LOCALIDAD";
 			if($resultado=$this->conexion->query($consulta)){
 				return $resultado;
 			}
@@ -38,7 +38,7 @@
 		}
 		
 		function unHospedaje($id){
-			$consulta="select * from hospedajes where ID=".$id;
+			$consulta=" select hospedajes.ID, hospedajes.NOMBRE, hospedajes.DESCRIPCION, hospedajes.PAGINA_WEB, localidades.LOCALIDAD from hospedajes join localidades on localidades.ID_LOCALIDAD = hospedajes.LOCALIDAD where ID=".$id;
 			if($resultado=$this->conexion->query($consulta)){
 				return $resultado;
 			}
