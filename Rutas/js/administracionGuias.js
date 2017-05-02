@@ -25,9 +25,8 @@ $(document).ready(function() {
         console.log(imagen);
 
         var enviarAjax = {"nick":nick,"experiencia":experiencia,"imagen":imagen};
-        console.log(enviarAjax);*/
-		
-		
+        console.log(enviarAjax);*/	
+	
 
         var formData = new FormData($(".formulario")[0]);
 
@@ -44,8 +43,8 @@ $(document).ready(function() {
             
             //una vez finalizado correctamente
             success: function(response){
-
-
+				var nombre = $('#nombreGuia').val()
+				console.log("Dentro del ajax: "+nombre)
 
                 console.log(response);
             }

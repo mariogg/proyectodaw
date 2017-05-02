@@ -1,0 +1,162 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es">
+<html>
+
+<head>
+	<link rel="stylesheet" href="estilos.css">
+	<meta name="author" content="" />
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta name="copyright" content="aw1516.org" />
+	<meta name="description" content="Paginas web de principiantes" />
+	<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css"/>
+	<script  src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+	<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+	<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+	<script  src="rutas/js/indexruta.js"></script>
+    <title>RUTAS</title>
+	<style>
+		#ruta{			
+			border:2px solid rgb(170, 170, 170);
+			height:140px;
+			border-radius:4px;
+			margin-bottom:15px;
+			padding-left:100px;
+		}
+		#titulo_ruta{
+		
+			display:inline;
+		}
+		#titulo_ruta #nombre_ruta{
+		float:left;
+		
+			width:70%;
+			font-size:30px;
+			vertical-align:center;
+		}
+		#titulo_ruta #valoracion{
+		
+			float:right;
+			width:5%;
+			font-size:30px;
+			color:green;
+			float:right;
+		}
+		#ruta li{
+			margin-left:2%;
+			width:30%;
+			list-style:none;
+			float:left;			
+		}
+		
+		#tabs li{
+			width:200px;
+		}	
+		.reserva{
+			border-radius: 20px; background-color: #f4511e; border: none; color: #FFFFFF; text-align: center; font-size: 18px; padding: 5px; width: 150px; transition: all 0.5s; cursor: pointer;margin: 5px;
+			
+		}		
+		.reserva:hover{opacity: 1; right: 0; background-color:#74b138;}
+	</style>
+</head>
+    
+<body>
+    <nav id="menu-top">
+    <li><a href="#">Loguearse</a>
+    <ul>
+    <li>
+    <form>
+    <div><input type='text' name='usuario' placeholder='Usuario' id='usuario'/></div>
+    <div><input type='password' name='passwd' id="passwd" placeholder='Password'/></div>
+    <button class="button" name='loguearse' id='loguearse'><span>ENVIAR</span></button>
+    </form>
+    
+    
+    </li>
+    </ul>
+    </li>
+    <li><a href="#">Registrarse</a>
+    <ul>
+    <li>
+    <form id="insert">
+                <label>Nick de usuario:</label><br> 
+                <input type="text" name="usuario" id="usuario" placeholder="ej:CyberBob"/><br>
+                <label>Contraseña:</label><br>
+                <input type="password" name="passwd" id="passwd"/><br>
+                <label>Correo electrónico:</label><br>
+                <input type="text" name="correo" id="correo" placeholder="ej:usuario@correo.com"/><br>
+                <label>DNI:</label><br>
+                <input type="text" name="dni" id="dni" placeholder="ej:David"/><br>
+                <label>Nombre:</label><br>
+                <input type="text" name="nombre" id="nombre" placeholder="ej:David"/><br>
+                <label>Apellidos:</label><br>
+                <input type="text" name="apellidos" id="apellidos" placeholder="ej:García Hernández"/><br>
+                <label>Fecha de nacimiento:</label><br>
+                <input type="text" name="fecna" id="fecna" placeholder="ej:23/05/1997"/><br>
+                <label>Teléfono:</label><br>
+                <input type="text" name="telefono" id="telefono" placeholder="ej:666666666"/><br>
+                <!--El siguiente input #perfil hay que dejarlo oculto para que el usuario no lo vea -->
+                <input type="text" name="perfil" id="perfil" value="3" class="oculto"/><br>
+                <button class="button" name="insertar" id="insertar"><span>ENVIAR</span></button>
+            </form>
+    </li>
+    </ul>         
+    </li>
+	</nav>
+    
+<div id="centrar">
+ <header>
+<a href="index.php"><img src="img/header.jpg" width="100%"></a>
+</header>
+	<nav id="menu-principal">
+    <li><a class="button" href="#">INICIO</a></li>
+    <li><a class="button" href="#">RUTAS</a>
+    </li>
+    <li><a class="button" href="#">HOSPEDAJE</a></li>
+    <li><a class="button" href="#">GUIAS</a>
+    </li>
+    <li><a class="button" href="#">PERFIL</a></li>
+	</nav>
+    
+    <div id="div1">
+    <a href="img/banner.png" ><img src="img/publi-home.jpg"></a>
+	</div>
+    
+    <aside>
+   
+    </aside>
+    
+	<section>
+	<article>
+     <div id="ruta">
+	 <div id="titulo_ruta"><p id="nombre_ruta"></p><p id="valoracion"></p></div>
+		<li>Localidad: <span id="localidad"></span></li>
+		<li>Distancia: <span id="Distancia"></span></li>
+		<li>Tiempo: <span id="Tiempo"></span></li>
+		<li>Dificultad: <span id="Dificultad"></span></li>
+		<li>Máximo Personas: <span id="max_personas"></span></li>
+		<li>PDF: <span id="PDF"></span></li>	
+		<li><a class="reserva" href="#">RESERVAR</a></li>
+	 </div>
+	
+	<div id="tabs">
+	<ul>
+		<li><a href="#tabs-1">Descripción</a></li>
+		<li><a href="#tabs-2">Mapa</a></li>
+	</ul>
+    <div id="tabs-1"><p id="descripcion"></p></div>
+	<div id="tabs-2"><div id="mapa"></div></div>
+	
+    
+	</div>
+	
+    </article>
+	</section>
+    </div>
+    
+    <footer>
+    <p>RUTAS DoubleG S.A©</p>
+	</footer>
+</body>
+
+</html>
