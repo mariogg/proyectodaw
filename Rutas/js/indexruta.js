@@ -1,8 +1,7 @@
 $(document).ready(function(){	  
     $( "#tabs" ).tabs({
 		collapsible: true
-	})
-	
+	})	
 	CargarRutaInicio()
 	
   
@@ -14,13 +13,7 @@ function CargarRutaInicio(){
 		type: 'POST',
 		DataType:'Json',		
 		success: function(data){  	
-			var tiempo=calcularTiempo(data[0].minutos)		
-			/*enlace="<p id='titulo_ruta'>"+data[0].nombre+"<span id='valoracion'>"+data[0].valoracion+"</span></p>"
-			enlace+="<li>Localidad: "+data[0].localidad+"</li><li>Distancia: "+data[0].km+" km</li><li> Tiempo: "+tiempo+"</li>"
-			enlace+="<li>Dificultad: "+data[0].dificultad+"</li><li>Personas Máximas: "+data[0].max_res+"</li><li> Tiempo: "+data[0].pdf+"</li>"
-			enlace+="<li><input type='submit' name='Reserva' value='Reservar'></input></li>"
-			*/
-			
+			var tiempo=calcularTiempo(data[0].minutos)				
 			$('#nombre_ruta').html(data[0].nombre)
 			$('#localidad').html(data[0].localidad)
 			$('#Tiempo').html(tiempo)
@@ -30,7 +23,7 @@ function CargarRutaInicio(){
 			$('#max_personas').html(data[0].max_res)
 			$('#PDF').html(data[0].pdf)
 			$('#mapa').html(data[0].mapa)
-			$('input:submit').click(popUp)
+			$('.reserva').click(popUp)
 			
 			
 		}
