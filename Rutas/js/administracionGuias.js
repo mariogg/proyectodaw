@@ -2,6 +2,7 @@
 $(document).ready(function() {
     cargarDatos();
     var fileExtension="";
+    
     $('#nav :file').change(function(){
         //obtenemos un array con los datos del archivo
         var file = $("#imagen")[0].files[0]
@@ -17,9 +18,8 @@ $(document).ready(function() {
     });
 	
     $('#insertar').on('click',function() {
-        /*var nick = $(this).parent().parent().children().children("#nombreGuia").val();
-        console.log(nick);
-        var experiencia = $(this).parent().parent().children().children("#experiencia").val();
+        
+        /*var experiencia = $(this).parent().parent().children().children("#experiencia").val();
         console.log(experiencia);
         var imagen = $(this).parent().parent().children().children("#fotoGuia").val();
         console.log(imagen);
@@ -44,10 +44,11 @@ $(document).ready(function() {
             
             //una vez finalizado correctamente
             success: function(response){
-
-
-
-                console.log(response);
+                 var nombre = $('#nombreGuia').val();
+    
+                //var nick = $("#nombreGuia").val();
+                //console.log("Este es el nick: " + nick);
+                console.log(response + "NICK: " + nombre);
             }
 
 
@@ -84,7 +85,7 @@ $(document).ready(function() {
             },
             success:  function (response) {
                 $("#listaUsuarios").innerHTML = response;
-                console.log(response);
+                console.log(response + "ESTE");
             }
         });
     }
