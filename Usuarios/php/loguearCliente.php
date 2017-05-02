@@ -19,7 +19,7 @@ if($resultado == 0) {
         $_SESSION['nickCliente'] = $resultado[0];
         $_SESSION['correoCliente'] = $resultado[2];
         $_SESSION['perfilUsuario'] = $resultado[8];
-        echo(json_encode(array($_SESSION['nickCliente'],$_SESSION['correoCliente'],$_SESSION['perfilUsuario'])));
+        echo(json_encode(array($_SESSION['nickCliente'],$_SESSION['correoCliente'],$_SESSION['perfilUsuario'],"AQUI")));
         
     }else {
         $respuestaNegativa = ["La password introducida no es correcta"];
