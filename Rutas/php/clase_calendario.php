@@ -44,14 +44,14 @@
 		}
 		
 		function visualizarTodasFechas(){
-			$consulta="select * from calendario order by fecha asc";
+			$consulta="select ID, ID_RUTA, FECHA from calendario order by fecha asc";
 			if($resultado=$this->conexion->query($consulta)){
 				return $resultado;
 			}
 		}
 		
 		function visualizarFecha($fecha){
-			$consulta="select * from calendario where fecha='".$fecha."'";
+			$consulta="select ID, ID_RUTA, FECHA from calendario where fecha='".$fecha."'";
 			if($resultado=$this->conexion->query($consulta)){
 				return $resultado;
 			}

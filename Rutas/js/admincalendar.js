@@ -1,3 +1,4 @@
+
 var dureza=[]
 
 function noExcursion(date){
@@ -57,22 +58,29 @@ function cargarRutas(){
 function mostrarC(){
 	var dato=$('#datepicker').val()
 	
+	
+	var fechax=dato.split("/")
+			
+	var anio=fechax[2]
+	var mes=fechax[1]
+	var dia=fechax[0]			
+	var fecha2=anio+'/'+mes+'/'+dia
 	var fecha={
-		fecha:dato
-	}
-
+		fecha:fecha2
+	}	
 	$.ajax({
 		url: 'rutas/php/panel_calendario_verCalendario.php',  
 		type: 'POST',
 		data:fecha,		
 		DataType:'Json',	
-		success: function(data){  		
+		success: function(data){  
+			console.log("dentro")
 			$('#fechas').html("")
 			if(data.length==0){
 				$('#fechas').html("")
 			}else{
 				var enlace="<fieldset><legend>Rutas en este Fecha</legend><table>"
-				console.log("ver: "+data[x].fecha)
+				console.log(data.length)
 				for(var x=0;x<data.length;x++){
 					var fech=data[x].fecha.split("-")
 					var anio=fech[0]
@@ -86,10 +94,6 @@ function mostrarC(){
 			enlace+="</table></fieldset>"
 
 			}			
-		   $('#fechas').html(enlace)				   
-
-			
-		   
 		   $('#fechas').html(enlace)
 		   $('.borrar').click(borrarRuta)
 		   comprobarMaximo()		   
