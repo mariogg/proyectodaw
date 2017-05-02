@@ -10,22 +10,12 @@ $(document).ready(function() {
         var fileName = file.name
         //obtenemos la extensión del archivo
         fileExtension = fileName.substring(fileName.lastIndexOf('.') + 1)
-        //obtenemos el tamaño del archivo
-        //var fileSize = file.size
-        //obtenemos el tipo de archivo image/png ejemplo
-        //var fileType = file.type
-        //mensaje con la información del archivo        
+               
     });
 	
     $('#insertar').on('click',function() {
         
-        /*var experiencia = $(this).parent().parent().children().children("#experiencia").val();
-        console.log(experiencia);
-        var imagen = $(this).parent().parent().children().children("#fotoGuia").val();
-        console.log(imagen);
-
-        var enviarAjax = {"nick":nick,"experiencia":experiencia,"imagen":imagen};
-        console.log(enviarAjax);*/	
+        
 	
 
         var formData = new FormData($(".formulario")[0]);
@@ -43,18 +33,15 @@ $(document).ready(function() {
             
             //una vez finalizado correctamente
             success: function(response){
-<<<<<<< HEAD
                  var nombre = $('#nombreGuia').val();
     
                 //var nick = $("#nombreGuia").val();
                 //console.log("Este es el nick: " + nick);
                 console.log(response + "NICK: " + nombre);
-=======
 				var nombre = $('#nombreGuia').val()
 				console.log("Dentro del ajax: "+nombre)
 
                 console.log(response);
->>>>>>> refs/remotes/jscordero/master
             }
 
 
