@@ -25,9 +25,8 @@ $(document).ready(function() {
         console.log(imagen);
 
         var enviarAjax = {"nick":nick,"experiencia":experiencia,"imagen":imagen};
-        console.log(enviarAjax);*/
-		
-		
+        console.log(enviarAjax);*/	
+	
 
         var formData = new FormData($(".formulario")[0]);
 
@@ -44,11 +43,18 @@ $(document).ready(function() {
             
             //una vez finalizado correctamente
             success: function(response){
+<<<<<<< HEAD
                  var nombre = $('#nombreGuia').val();
     
                 //var nick = $("#nombreGuia").val();
                 //console.log("Este es el nick: " + nick);
                 console.log(response + "NICK: " + nombre);
+=======
+				var nombre = $('#nombreGuia').val()
+				console.log("Dentro del ajax: "+nombre)
+
+                console.log(response);
+>>>>>>> refs/remotes/jscordero/master
             }
 
 
