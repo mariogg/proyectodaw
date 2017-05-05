@@ -2,6 +2,21 @@
 session_start();
 include "clase_usuarios.php";
 
+class ObjetoLoguin {
+    public $nick = "";
+    public $correo = "";
+    public $perfil = "";
+    
+    
+        function __construct($nick,$correo,$perfil) {
+            $this->nick = $nick;
+            $this->correo = $correo;
+            $this->perfil = $perfil;
+        }
+    
+        
+}
+
 $nick = $_REQUEST['nick'];
 $password = $_REQUEST['passwd'];
 
@@ -16,16 +31,23 @@ if($resultado == 0) {
     
 }else {
     if($nick == $resultado[0] && $password == $resultado[1]) {
-        $_SESSION['nickCliente'] = $resultado[0];
-        $_SESSION['correoCliente'] = $resultado[2];
+        $_SESSION['nick'] = $resultado[0];
+        $_SESSION['correo'] = $resultado[2];
         $_SESSION['perfilUsuario'] = $resultado[8];
-        echo(json_encode(array($_SESSION['nickCliente'],$_SESSION['correoCliente'],$_SESSION['perfilUsuario'],"AQUI")));
+        
+        $respuesta = new ObjetoLoguin($_SESSION["nick"],$_SESSION["correo"],$_SESSION["perfilUsuario"]);
+        header('Content-type: application/json');
+        echo(json_encode($respuesta));
         
     }else {
         $respuestaNegativa = ["La password introducida no es correcta"];
         echo(json_encode($respuestaNegativa));
     }
 }
+
+
+
+
 
 
 
