@@ -21,9 +21,9 @@ $(document).ready(function() {
             },
             success:  function (response) {
                 var liLogueo = $("#liLogueo");
-                var ulLogueo = $("ulLogueo");
+                //var ulLogueo = $("ulLogueo");
                 var liRegistro = $("#liRegistro");
-                var ulRegistro = $("#ulRegistro");
+                //var ulRegistro = $("#ulRegistro");
                 var botonAdmin = $("#botonAdmin");
                 var desconectar = $("#desc");
                 
@@ -42,14 +42,14 @@ $(document).ready(function() {
                 liLogueo.removeClass("mostrar");
                 liLogueo.addClass("ocultar");
                     
-                ulLogueo.removeClass("mostrar");
-                ulLogueo.addClass("ocultar");    
+                //ulLogueo.removeClass("mostrar");
+                //ulLogueo.addClass("ocultar");    
                 
                 liRegistro.removeClass("mostrar");
                 liRegistro.addClass("ocultar");
                     
-                ulRegistro.removeClass("mostrar");
-                ulRegistro.addClass("ocultar");  
+                //ulRegistro.removeClass("mostrar");
+                //ulRegistro.addClass("ocultar");  
                     
                 desconectar.removeClass("ocultar");
                 desconectar.addClass("mostrar");    
@@ -62,14 +62,14 @@ $(document).ready(function() {
                 liLogueo.removeClass("mostrar");
                 liLogueo.addClass("ocultar");
                     
-                ulLogueo.removeClass("mostrar");
-                ulLogueo.addClass("ocultar");    
+                //ulLogueo.removeClass("mostrar");
+                //ulLogueo.addClass("ocultar");    
                 
                 liRegistro.removeClass("mostrar");
                 liRegistro.addClass("ocultar");
                     
-                ulRegistro.removeClass("mostrar");
-                ulRegistro.addClass("ocultar");  
+                //ulRegistro.removeClass("mostrar");
+                //ulRegistro.addClass("ocultar");  
                     
                 desconectar.removeClass("ocultar");
                 desconectar.addClass("mostrar"); 
@@ -82,14 +82,14 @@ $(document).ready(function() {
                 liLogueo.removeClass("mostrar");
                 liLogueo.addClass("ocultar");
                     
-                ulLogueo.removeClass("mostrar");
-                ulLogueo.addClass("ocultar");    
+                //ulLogueo.removeClass("mostrar");
+                //ulLogueo.addClass("ocultar");    
                 
                 liRegistro.removeClass("mostrar");
                 liRegistro.addClass("ocultar");
                     
-                ulRegistro.removeClass("mostrar");
-                ulRegistro.addClass("ocultar");  
+                //ulRegistro.removeClass("mostrar");
+                //ulRegistro.addClass("ocultar");  
                     
                 desconectar.removeClass("ocultar");
                 desconectar.addClass("mostrar"); 
@@ -161,9 +161,9 @@ $(document).ready(function() {
             success:  function (response) {
                 
                  var liLogueo = $("#liLogueo");
-                var ulLogueo = $("ulLogueo");
+                //var ulLogueo = $("ulLogueo");
                 var liRegistro = $("#liRegistro");
-                var ulRegistro = $("#ulRegistro");
+                //var ulRegistro = $("#ulRegistro");
                 var botonAdmin = $("#botonAdmin");
                 var desconectar = $("#desc");
                 
@@ -173,14 +173,14 @@ $(document).ready(function() {
                 liLogueo.removeClass("ocultar");
                 liLogueo.addClass("mostrar");
                     
-                ulLogueo.removeClass("ocultar");
-                ulLogueo.addClass("mostrar");    
+                //ulLogueo.removeClass("ocultar");
+                //ulLogueo.addClass("mostrar");    
                 
                 liRegistro.removeClass("ocultar");
                 liRegistro.addClass("mostrar");
                     
-                ulRegistro.removeClass("ocultar");
-                ulRegistro.addClass("mostrar");  
+                //ulRegistro.removeClass("ocultar");
+                //ulRegistro.addClass("mostrar");  
                     
                 desconectar.removeClass("mostrar");
                 desconectar.addClass("ocultar"); 
