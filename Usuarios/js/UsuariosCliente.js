@@ -6,13 +6,20 @@ function comprobarSession(){
 		DataType:'Json',		
 		success: function(data){ 
 		
+		var liLogueo = $("#liLogueo");
+                //var ulLogueo = $("ulLogueo");
+                var liRegistro = $("#liRegistro");
 		if (data.usuario==""){
+				liLogueo.removeClass("ocultar");
+                liLogueo.addClass("mostrar");
+				liRegistro.removeClass("ocultar");
+                liRegistro.addClass("mostrar");
 			console.log("no hay sesion")
 		}else{
 			console.log("Session: "+data.usuario)
-			var liLogueo = $("#liLogueo");
+			//var liLogueo = $("#liLogueo");
                 //var ulLogueo = $("ulLogueo");
-                var liRegistro = $("#liRegistro");
+                //var liRegistro = $("#liRegistro");
                 //var ulRegistro = $("#ulRegistro");
                 var botonAdmin = $("#botonAdmin");
                 var desconectar = $("#desc");

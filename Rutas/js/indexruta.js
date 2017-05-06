@@ -89,7 +89,7 @@ function cargarRutasLocalidad(){
 		}
 	})
 }
-
+/*
 function comprobarSession(){
 	$.ajax({
 		url: 'usuarios/php/clase_sessiones.php',
@@ -105,7 +105,7 @@ function comprobarSession(){
 			
 		}
 	})
-}
+}*/
 
 function annadir(){
 	
@@ -271,14 +271,18 @@ function comprobarSession(){
 		type: 'POST',
 		DataType:'Json',		
 		success: function(data){ 
-		
-		if (data.usuario==""){
-			console.log("no hay sesion")
-		}else{
-			console.log("Session: "+data.usuario)
 			var liLogueo = $("#liLogueo");
                 //var ulLogueo = $("ulLogueo");
                 var liRegistro = $("#liRegistro");
+		if (data.usuario==""){
+				liLogueo.removeClass("ocultar");
+                liLogueo.addClass("mostrar");
+				liRegistro.removeClass("ocultar");
+                liRegistro.addClass("mostrar");
+			console.log("no hay sesion")
+		}else{
+			console.log("Session: "+data.usuario)
+				
                 //var ulRegistro = $("#ulRegistro");
                 var botonAdmin = $("#botonAdmin");
                 var desconectar = $("#desc");
