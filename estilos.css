@@ -218,12 +218,12 @@ aside h3 {
 
 
 .ocultar {
-    visibility:visible;
+    visibility:hidden;
     
 }
 
 .mostrar {
-    visibility:hidden;
+    visibility:visible;
 }
 
 
