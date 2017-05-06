@@ -4,7 +4,8 @@
     <html>
 
         <head>
-            <link rel="stylesheet" href="estilos.css">
+			<link rel="stylesheet" href="estilos.css">
+            <link rel="stylesheet" href="css/rutas.css">
             <meta name="author" content="" />
             <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
             <meta name="copyright" content="aw1516.org" />
@@ -13,75 +14,12 @@
             <script  src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
             <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
             <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
-            <script  src="Usuarios/js/usuariosCliente.js"></script>
+            
 			<script  src="rutas/js/indexruta.js"></script>
              <title>RUTAS</title>
 	<style>
 	
-		aside{
-			background-color:white;
-			margin-top:16px;
-		}
 		
-		aside select, imput{
-			width:91%;
-		}
-		aside div{
-			color:black;
-			width:90%;
-		}
-		
-		
-		
-		#ruta{			
-			border:1px solid rgb(170, 170, 170);
-			
-			
-		height: 125px;
-			border-radius:4px;
-			margin-bottom:15px;
-			padding-left:20px;
-		}
-		
-		#titulo_ruta{
-		
-			display:inline;
-		}
-		
-		#titulo_ruta #nombre_ruta{
-			float:left;		
-			width:70%;
-			font-size:30px;
-			vertical-align:center;
-		}
-		
-		#titulo_ruta #valoracion{		
-			position:absolute;
-			right:5%;
-			width:5%;
-			font-size:30px;
-			color:green;
-			float:right;
-		}
-		
-		#ruta li{
-			margin-left:10px;
-			width:30%;
-			list-style:none;
-			float:left;			
-		}
-		
-		#tabs li{
-			
-			width:200px;
-		}	
-		
-		.reserva{
-			border-radius: 20px; background-color: #f4511e; border: none; color: #FFFFFF; text-align: center; font-size: 18px; padding: 5px; width: 150px; transition: all 0.5s; cursor: pointer;margin: 5px;
-			
-		}		
-		
-		.reserva:hover{opacity: 1; right: 0; background-color:#74b138;}
 	</style>
         </head>
 
@@ -129,23 +67,23 @@
 
             <div id="centrar">
                 <header>
-                    <a href="index.php"><img src="img/header.jpg" width="100%"></a>
+                    <a href="index.html"><img src="img/header.jpg" width="100%"></a>
                 </header>
                 <nav id="menu-principal">
-                    <li><a class="button" href="#">INICIO</a></li>
-                    <li><a class="button" href="#">RUTAS</a>
+                    <li><a class="button" href="index.html">INICIO</a></li>
+                    <li><a class="button" href="rutas.html">RUTAS</a>
                     </li>
-                    <li><a class="button" href="#">HOSPEDAJE</a></li>
-                    <li><a class="button" href="#">GUIAS</a>
+                    <li><a class="button" href="hospedajes.html">HOSPEDAJE</a></li>
+                    <li><a class="button" href="guias.html">GUIAS</a>
                     </li>
-                    <li class="ocultar" id="botonAdmin" ><a class="button" href="#">GESTIÓN</a></li>
+                    <li class="ocultar" id="botonAdmin" ><a class="button" href="admin.html">GESTIÓN</a></li>
                 </nav>
 
                 <div id="div1">
                     <a href="img/banner.png" ><img src="img/publi-home.jpg"></a>
                 </div>
 
-               </div>
+               
     
     <aside>
 		<div id="lista"></div>
@@ -170,14 +108,14 @@
 	<section>
 	<article>
      <div id="ruta">
-	 <div id="titulo_ruta"><p id="nombre_ruta"></p><p id="valoracion"></p></div>
-		<li>Localidad: <span id="localidad"></span></li>
-		<li>Distancia: <span id="Distancia"></span> km</li>
+	 <div id="titulo_ruta"><input type="hidden" id="id_ruta"/><p id="nombre_ruta"></p><p id="valoracion"></p></div>
+		<p><li>Localidad: <span id="localidad"></span></li>
+		<li>Distancia: <span id="Distancia"></span> km</li></p>
 		<p><li>Tiempo: <span id="Tiempo"></span></li>
 		<li>Dificultad: <span id="Dificultad"></span></li>
 		<li>Máximo Personas: <span id="max_personas"></span></li></p>
-		<!--<li>PDF: <span id="PDF"></span></li>	-->
-		<p><li><a class="reserva" href="#">RESERVAR</a></li><li>Fechas: <div id="fechas_ruta"></div></li></p>
+		<p><li><a id="PDF"  href="" download=""><img id="icon" src="img/pdf.png"></img></a></li>
+		<li><a id="botonreserva" class="reserva" class="button" data-type="zoomin" href="#">RESERVAR</a></li><li>Fechas: <div id="fechas_ruta"></div></li></p>
 	 </div>
 	
 	<div id="tabs">
@@ -194,9 +132,30 @@
     </article>
 	</section>
     </div>
+	</div>
             <footer>
                 <p>RUTAS DoubleG S.A©</p>
             </footer>
+			<div class="overlay-container">
+				<div class="window-container zoomin">
+					<div id="reservar">
+					<li>Ruta: <span id="rutareserva"></span></li>
+					<li>Nombre completo: <span id="nombrecompleto"></span></li>
+					<li><label>DNI: <span id="DNIreserva"></span>	</li>
+					</div>
+					
+					<div class="acompanante">	
+					<p>Nuevo/a comapañero/a</p>					
+					<li>Nombre completo: <input type="text" id ="nombre_rutero" name="nombre_completo"/></span></li>
+					<li><label>DNI: <input type="text" id ="dni_rutero" name="dni_acompanante"/></span>	</li>
+					</div>
+					<div id="listado_ruteros"></div>
+					<a href="#" id="rutero" class="button reserva">Añadir</a>
+					<span class="close">Cerrar</span><span class="close">Guardar</span>
+			</div>
+			
+		</div>
+			
         </body>
 
     </html>
