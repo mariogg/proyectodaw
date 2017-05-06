@@ -1,8 +1,98 @@
 //comentario
-
+function comprobarSession(){
+	$.ajax({
+		url: 'usuarios/php/clase_sessiones.php',
+		type: 'POST',
+		DataType:'Json',		
+		success: function(data){ 
+		
+		if (data.usuario==""){
+			console.log("no hay sesion")
+		}else{
+			console.log("Session: "+data.usuario)
+			var liLogueo = $("#liLogueo");
+                //var ulLogueo = $("ulLogueo");
+                var liRegistro = $("#liRegistro");
+                //var ulRegistro = $("#ulRegistro");
+                var botonAdmin = $("#botonAdmin");
+                var desconectar = $("#desc");
+                
+                var nickLogueado = $("#nickLogueado");
+                
+                var nickResultado = data.usuario;
+                var correoResultado = data.correo;
+                var perfilResultado = data.perfil;
+                
+                if(nickResultado == "La rubia") {
+                nickLogueado.html(nickResultado);    
+                    
+                botonAdmin.removeClass("ocultar");
+                botonAdmin.addClass("mostrar");
+                    
+                liLogueo.removeClass("mostrar");
+                liLogueo.addClass("ocultar");
+                    
+                //ulLogueo.removeClass("mostrar");
+                //ulLogueo.addClass("ocultar");    
+                
+                liRegistro.removeClass("mostrar");
+                liRegistro.addClass("ocultar");
+                    
+                //ulRegistro.removeClass("mostrar");
+                //ulRegistro.addClass("ocultar");  
+                    
+                desconectar.removeClass("ocultar");
+                desconectar.addClass("mostrar");    
+                    
+                }else if(nickResultado == "Elhoir" || nickResultado == "Lord Goyito" || nickResultado == "Mario DoubleG") {
+                 nickLogueado.html(nickResultado); 
+                 botonAdmin.removeClass("mostrar");
+                botonAdmin.addClass("ocultar");  
+                   
+                liLogueo.removeClass("mostrar");
+                liLogueo.addClass("ocultar");
+                    
+                //ulLogueo.removeClass("mostrar");
+                //ulLogueo.addClass("ocultar");    
+                
+                liRegistro.removeClass("mostrar");
+                liRegistro.addClass("ocultar");
+                    
+                //ulRegistro.removeClass("mostrar");
+                //ulRegistro.addClass("ocultar");  
+                    
+                desconectar.removeClass("ocultar");
+                desconectar.addClass("mostrar"); 
+                    
+                }else {
+                 nickLogueado.html(nickResultado); 
+                 botonAdmin.removeClass("mostrar");
+                botonAdmin.addClass("ocultar");
+                    
+                liLogueo.removeClass("mostrar");
+                liLogueo.addClass("ocultar");
+                    
+                //ulLogueo.removeClass("mostrar");
+                //ulLogueo.addClass("ocultar");    
+                
+                liRegistro.removeClass("mostrar");
+                liRegistro.addClass("ocultar");
+                    
+                //ulRegistro.removeClass("mostrar");
+                //ulRegistro.addClass("ocultar");  
+                    
+                desconectar.removeClass("ocultar");
+                desconectar.addClass("mostrar"); 
+                
+                }
+		}
+			
+		}
+	})
+}
 $(document).ready(function() {
 
-
+	comprobarSession()
 
     $('#loguearse').on('click',function() {
 
@@ -20,6 +110,12 @@ $(document).ready(function() {
                 $("#resultado").html("Procesando, espere por favor...");
             },
             success:  function (response) {
+				
+				if(response=='["La password introducida no es correcta"]'){
+					console.log("Contraseña incorrecta")
+				}else if(response=='["El nickname no existe"]'){
+					console.log("No existe Nick")
+				}else{
                 var liLogueo = $("#liLogueo");
                 //var ulLogueo = $("ulLogueo");
                 var liRegistro = $("#liRegistro");
@@ -95,7 +191,8 @@ $(document).ready(function() {
                 desconectar.addClass("mostrar"); 
                 
                 }
-                
+				}
+                comprobarSession()
             }
             
             

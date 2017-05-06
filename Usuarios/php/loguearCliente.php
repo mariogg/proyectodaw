@@ -1,5 +1,5 @@
 <?php
-session_start();
+
 include "clase_usuarios.php";
 
 class ObjetoLoguin {
@@ -31,6 +31,7 @@ if($resultado == 0) {
     
 }else {
     if($nick == $resultado[0] && $password == $resultado[1]) {
+	session_start();
         $_SESSION['nick'] = $resultado[0];
         $_SESSION['correo'] = $resultado[2];
         $_SESSION['perfilUsuario'] = $resultado[8];
@@ -44,7 +45,6 @@ if($resultado == 0) {
         echo(json_encode($respuestaNegativa));
     }
 }
-
 
 
 
