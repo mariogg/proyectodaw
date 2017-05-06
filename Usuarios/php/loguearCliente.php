@@ -33,10 +33,15 @@ if($resultado == 0) {
     if($nick == $resultado[0] && $password == $resultado[1]) {
 	session_start();
         $_SESSION['nick'] = $resultado[0];
-        $_SESSION['correo'] = $resultado[2];
-        $_SESSION['perfilUsuario'] = $resultado[8];
+        $_SESSION['Correo'] = $resultado[2];
+        $_SESSION['PerfilUsuario'] = $resultado[8];
+		$_SESSION['dni']=$resultado[0];
+		$_SESSION['nombre']=$resultado[0];
+		$_SESSION['apellidos']=$resultado[0];
+		$_SESSION['telefono']=$resultado[0];
+		$_SESSION['fecna']=$resultado[0];
         
-        $respuesta = new ObjetoLoguin($_SESSION["nick"],$_SESSION["correo"],$_SESSION["perfilUsuario"]);
+        $respuesta = new ObjetoLoguin($_SESSION["nick"],$_SESSION["Correo"],$_SESSION["PerfilUsuario"]);
         header('Content-type: application/json');
         echo(json_encode($respuesta));
         

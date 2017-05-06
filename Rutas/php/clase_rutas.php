@@ -5,7 +5,7 @@
 		
 		//contructor y conexion a la base de datos.
 		function __construct(){
-			$this->conexion=new mysqli('localhost','root','','proyectodaw2');
+			$this->conexion=new mysqli('localhost','root','','proyectodaw');
 			
 			if($this->conexion->connect_error){
                 die('Error de Conexion ('.$this->conexion->connect_errno.')'.$this->conexion->connect_error);
@@ -76,8 +76,8 @@
 			return "conexion cerrada";
 		}
 	
-	function seleccionarTodasLasRutasValoracion(){			
-			$consulta="select rutas.ID as ID, rutas.NOMBRE as NOM, rutas.KILOMETROS as KILOMETROS, rutas.MINUTOS as MINUTOS, localidad.LOCALIDAD as LOC, rutas.CONSEJOS as CONSEJOS, dificultadrutas.DIFICUTAD as DIFICULTAD, rutas.VALORACION as VALORACION, rutas.PDF as PDF,  rutas.MAX_RESERVAS as MAX_RESERVAS, rutas.MAPA as MAPA from rutas  join localidad on localidad.ID_LOCALIDAD = rutas.LOCALIDAD  join dificultadrutas on dificultadrutas.ID_DIFICULTAD = rutas.DIFICULTAD order by rutas.VALORACION desc";			
+	function seleccionarTodasLasRutasValoracion($ruta){			
+			$consulta="select rutas.ID as ID, rutas.NOMBRE as NOM, rutas.KILOMETROS as KILOMETROS, rutas.MINUTOS as MINUTOS, localidad.LOCALIDAD as LOC, rutas.CONSEJOS as CONSEJOS, dificultadrutas.DIFICUTAD as DIFICULTAD, rutas.VALORACION as VALORACION, rutas.PDF as PDF,  rutas.MAX_RESERVAS as MAX_RESERVAS, rutas.MAPA as MAPA from rutas  join localidad on localidad.ID_LOCALIDAD = rutas.LOCALIDAD  join dificultadrutas on dificultadrutas.ID_DIFICULTAD = rutas.DIFICULTAD where nombre='".$ruta."' order by rutas.VALORACION desc";			
 			//$consulta="select * from rutas";
 			if($resultado=$this->conexion->query($consulta)){
 			
@@ -91,6 +91,22 @@
 				return "sin resultados";
 			}
 		}
+		
+		function seleccionarRutasLocalidad($localidad){
+			$consulta="select rutas.ID as ID, rutas.NOMBRE as NOM, rutas.KILOMETROS as KILOMETROS, rutas.MINUTOS as MINUTOS, localidad.LOCALIDAD as LOC, rutas.CONSEJOS as CONSEJOS, dificultadrutas.DIFICUTAD as DIFICULTAD, rutas.VALORACION as VALORACION, rutas.PDF as PDF,  rutas.MAX_RESERVAS as MAX_RESERVAS, rutas.MAPA as MAPA from rutas  join localidad on localidad.ID_LOCALIDAD = rutas.LOCALIDAD  join dificultadrutas on dificultadrutas.ID_DIFICULTAD = rutas.DIFICULTAD where localidad.LOCALIDAD='".$localidad."' order by rutas.VALORACION desc";			
+			if($resultado=$this->conexion->query($consulta)){
+			
+				$datos=array();
+				while($fila=$resultado->fetch_assoc()){	
+					$enlace=array($fila['ID'],$fila['NOM'],$fila['KILOMETROS'],$fila['MINUTOS'],$fila['LOC'],$fila['CONSEJOS'],$fila['DIFICULTAD'],$fila['VALORACION'],$fila['PDF'],$fila['MAX_RESERVAS'],$fila['MAPA']);
+					array_push($datos, $enlace);
+	}	
+				return $datos;
+			}else{
+				return "sin resultados";
+			}
+		}
+		
 	}
 
 ?>

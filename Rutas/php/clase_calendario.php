@@ -51,10 +51,17 @@
 		}
 		
 		function visualizarFecha($fecha){
-			$consulta="select ID, ID_RUTA, FECHA from calendario where fecha='".$fecha."'";
+			$consulta="select calendario.ID, calendario.ID_RUTA, calendario.FECHA, rutas.NOMBRE from calendario join rutas on calendario.ID_RUTA = rutas.ID where calendario.fecha='".$fecha."'";
 			if($resultado=$this->conexion->query($consulta)){
 				return $resultado;
 			}
+		}
+		
+		function visualizarFechaUnRuta($id){
+		$consulta="select * from calendario where ID_RUTA=".$id." order by fecha asc";
+			if($resultado=$this->conexion->query($consulta)){
+				return $resultado;
+			}			
 		}
 		
 		function desconectar(){
