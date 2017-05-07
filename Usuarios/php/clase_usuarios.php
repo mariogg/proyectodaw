@@ -32,11 +32,11 @@ class Usuarios{
 	}
     
     function comprobarLogueo($nick) {
-        $consulta = "select USUARIO,CORREO,DNI,NOMBRE,APELLIDOS,FECNA,TELEFONO,PASSWORD,perfilusuario.PERFIL as PERFIL from usuarios join perfilusuario on perfilusuario.IDPERFIL = usuarios.PERFIL where USUARIO='$nick'";
+        $consulta = "select ID, USUARIO,CORREO,DNI,NOMBRE,APELLIDOS,FECNA,TELEFONO,PASSWORD,perfilusuario.PERFIL as PERFIL from usuarios join perfilusuario on perfilusuario.IDPERFIL = usuarios.PERFIL where USUARIO='$nick'";
         $resul="";
         if($resultado=$this->conexion->query($consulta)) {
             while($fila=$resultado->fetch_assoc()){ 
-                
+                $idSelect=$fila['ID'];
                 $nickSelect = $fila['USUARIO'];
                 $passwordSelect = $fila['PASSWORD'];
                 $correoSelect = $fila['CORREO'];
@@ -48,7 +48,7 @@ class Usuarios{
                 
                 $perfilSelect = $fila['PERFIL'];
                 
-                $resul=[$nickSelect,$passwordSelect,$correoSelect,$dniSelect,$nombreSelect,$apellidosSelect,$fecnaSelect,$telefonoSelect,$perfilSelect];
+                $resul=[$nickSelect,$passwordSelect,$correoSelect,$dniSelect,$nombreSelect,$apellidosSelect,$fecnaSelect,$telefonoSelect,$perfilSelect,$idSelect];
             } 
 
             return $resul;

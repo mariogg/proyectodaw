@@ -108,13 +108,23 @@ function comprobarSession(){
 }*/
 
 function annadir(){
+	if($('#nombre_rutero').val()== "" || $('#dni_rutero').val()==""){
+		
+	}else{
+		if($('#listado_ruteros').hasClass('oculto')){
+			$('#listado_ruteros').removeClass("oculto")
+			$('#listado_ruteros').addClass("mostrar")
+		}
+		//$('#listado_ruteros').removeClass("oculto")
+		//$('#listado_ruteros').addClass("mostrar")
+		var nombre=$('#nombre_rutero').val()
+		var dni=$('#dni_rutero').val()
+		
+		var mensaje=$('#listado_ruteros').html()
+		mensaje+="<p>Nombre: <span class='compi'>"+nombre+"</span></p><p>DNI: <span class='dnicompi'>"+dni+"</span></p><br><hr/>"
+		$('#listado_ruteros').html(mensaje)
+	}
 	
-	var nombre=$('#nombre_rutero').val()
-	var dni=$('#dni_rutero').val()
-	console.log(dni)
-	var mensaje=$('#listado_ruteros').html()
-	mensaje+="<p>Nombre: <span>"+nombre+"</span></p><p>DNI: <span>"+dni+"</span></p><br><hr/>"
-	$('#listado_ruteros').html(mensaje)
 }
 
 $(document).ready(function(){
@@ -153,7 +163,7 @@ $(document).ready(function(){
 	//CargarRutaInicio()
 	
   
-})
+
 
 function cargarRutas(){	
 	
@@ -245,9 +255,9 @@ function CargarRutaInicio(ruta){
 					enlace+="</select>"   			
 					$('#fechas_ruta').html(enlace)
 					var consulta=$('#datepicker').val()
-					console.log(consulta)
+					
 					if(consulta!=undefined){
-						console.log("dentro")
+						
 						$('#listado_rutas').val(consulta)
 					}
 				}
@@ -255,7 +265,7 @@ function CargarRutaInicio(ruta){
 		}
 	})	
 }
-
+$('#guardar_Reserva').click(guardarReserva)
 function calcularTiempo(minutos){
 	var horas=Math.trunc(minutos/60);
 	var minuto=minutos-horas*60;
@@ -265,102 +275,7 @@ function calcularTiempo(minutos){
 }
 
 //comentario
-function comprobarSession(){
-	$.ajax({
-		url: 'usuarios/php/clase_sessiones.php',
-		type: 'POST',
-		DataType:'Json',		
-		success: function(data){ 
-			var liLogueo = $("#liLogueo");
-                //var ulLogueo = $("ulLogueo");
-                var liRegistro = $("#liRegistro");
-		if (data.usuario==""){
-				liLogueo.removeClass("ocultar");
-                liLogueo.addClass("mostrar");
-				liRegistro.removeClass("ocultar");
-                liRegistro.addClass("mostrar");
-			console.log("no hay sesion")
-		}else{
-			console.log("Session: "+data.usuario)
-				
-                //var ulRegistro = $("#ulRegistro");
-                var botonAdmin = $("#botonAdmin");
-                var desconectar = $("#desc");
-                
-                var nickLogueado = $("#nickLogueado");
-                
-                var nickResultado = data.usuario;
-                var correoResultado = data.correo;
-                var perfilResultado = data.perfil;
-                
-                if(nickResultado == "La rubia") {
-                nickLogueado.html(nickResultado);    
-                    
-                botonAdmin.removeClass("ocultar");
-                botonAdmin.addClass("mostrar");
-                    
-                liLogueo.removeClass("mostrar");
-                liLogueo.addClass("ocultar");
-                    
-                //ulLogueo.removeClass("mostrar");
-                //ulLogueo.addClass("ocultar");    
-                
-                liRegistro.removeClass("mostrar");
-                liRegistro.addClass("ocultar");
-                    
-                //ulRegistro.removeClass("mostrar");
-                //ulRegistro.addClass("ocultar");  
-                    
-                desconectar.removeClass("ocultar");
-                desconectar.addClass("mostrar");    
-                    
-                }else if(nickResultado == "Elhoir" || nickResultado == "Lord Goyito" || nickResultado == "Mario DoubleG") {
-                 nickLogueado.html(nickResultado); 
-                 botonAdmin.removeClass("mostrar");
-                botonAdmin.addClass("ocultar");  
-                   
-                liLogueo.removeClass("mostrar");
-                liLogueo.addClass("ocultar");
-                    
-                //ulLogueo.removeClass("mostrar");
-                //ulLogueo.addClass("ocultar");    
-                
-                liRegistro.removeClass("mostrar");
-                liRegistro.addClass("ocultar");
-                    
-                //ulRegistro.removeClass("mostrar");
-                //ulRegistro.addClass("ocultar");  
-                    
-                desconectar.removeClass("ocultar");
-                desconectar.addClass("mostrar"); 
-                    
-                }else {
-                 nickLogueado.html(nickResultado); 
-                 botonAdmin.removeClass("mostrar");
-                botonAdmin.addClass("ocultar");
-                    
-                liLogueo.removeClass("mostrar");
-                liLogueo.addClass("ocultar");
-                    
-                //ulLogueo.removeClass("mostrar");
-                //ulLogueo.addClass("ocultar");    
-                
-                liRegistro.removeClass("mostrar");
-                liRegistro.addClass("ocultar");
-                    
-                //ulRegistro.removeClass("mostrar");
-                //ulRegistro.addClass("ocultar");  
-                    
-                desconectar.removeClass("ocultar");
-                desconectar.addClass("mostrar"); 
-                
-                }
-		}
-			
-		}
-	})
-}
-$(document).ready(function() {
+
 	$('#botonreserva').click(function() {
 		console.log($('#nombre_ruta').html())
 		$.ajax({
@@ -385,7 +300,9 @@ $(document).ready(function() {
 		});
 	});
 	
-	$('.close').click(function() {
+	$('#close').click(function() {
+		$('#listado_ruteros').removeClass("mostrar")
+		$('#listado_ruteros').addClass("ocultar")
 		$('#listado_ruteros').html("")
 		$('.overlay-container').fadeOut().end().find('.window-container').removeClass('window-container-visible');
 	});
@@ -587,7 +504,140 @@ $(document).ready(function() {
 
 });
 
+function comprobarSession(){
+	console.log("Inicio de sesion")
+	$.ajax({
+		url: 'usuarios/php/clase_sessiones.php',
+		type: 'POST',
+		DataType:'Json',		
+		success: function(data){ 
+			var liLogueo = $("#liLogueo");               
+            var liRegistro = $("#liRegistro");
+			console.log("sessop"+data.usuario)
+			if (data.usuario==""){
+					liLogueo.removeClass("ocultar");
+					liLogueo.addClass("mostrar");
+					liRegistro.removeClass("ocultar");
+					liRegistro.addClass("mostrar");
+				console.log("no hay sesion")
+			}else{
+				console.log("Session: "+data.usuario)
+					
+					//var ulRegistro = $("#ulRegistro");
+					var botonAdmin = $("#botonAdmin");
+					var desconectar = $("#desc");
+					
+					var nickLogueado = $("#nickLogueado");
+					
+					var nickResultado = data.usuario;
+					var correoResultado = data.correo;
+					var perfilResultado = data.perfil;
+					
+					if(nickResultado == "La rubia") {
+					nickLogueado.html(nickResultado);    
+					
+					botonAdmin.removeClass("ocultar");
+					botonAdmin.addClass("mostrar");
+						
+					liLogueo.removeClass("mostrar");
+					liLogueo.addClass("ocultar");
+						
+					//ulLogueo.removeClass("mostrar");
+					//ulLogueo.addClass("ocultar");    
+					
+					liRegistro.removeClass("mostrar");
+					liRegistro.addClass("ocultar");
+						
+					//ulRegistro.removeClass("mostrar");
+					//ulRegistro.addClass("ocultar");  
+						
+					desconectar.removeClass("ocultar");
+					desconectar.addClass("mostrar");    
+						
+					}else if(nickResultado == "Elhoir" || nickResultado == "Lord Goyito" || nickResultado == "Mario DoubleG") {
+					 nickLogueado.html(nickResultado); 
+					 botonAdmin.removeClass("mostrar");
+					botonAdmin.addClass("ocultar");  
+					   
+					liLogueo.removeClass("mostrar");
+					liLogueo.addClass("ocultar");
+						
+					//ulLogueo.removeClass("mostrar");
+					//ulLogueo.addClass("ocultar");    
+					
+					liRegistro.removeClass("mostrar");
+					liRegistro.addClass("ocultar");
+						
+					//ulRegistro.removeClass("mostrar");
+					//ulRegistro.addClass("ocultar");  
+						
+					desconectar.removeClass("ocultar");
+					desconectar.addClass("mostrar"); 
+						
+					}else {
+					nickLogueado.html(nickResultado); 
+					botonAdmin.removeClass("mostrar");
+					botonAdmin.addClass("ocultar");
+						
+					liLogueo.removeClass("mostrar");
+					liLogueo.addClass("ocultar");
+						
+					//ulLogueo.removeClass("mostrar");
+					//ulLogueo.addClass("ocultar");    
+					
+					liRegistro.removeClass("mostrar");
+					liRegistro.addClass("ocultar");
+						
+					//ulRegistro.removeClass("mostrar");
+					//ulRegistro.addClass("ocultar");  
+						
+					desconectar.removeClass("ocultar");
+					desconectar.addClass("mostrar"); 
+					
+					}
+			}
+			
+		}
+	})
+}	
+	function guardarReserva(){
+		var id=$('#id_ruta').val()
+		var fecha=$('#listado_rutas').val()
+		var fechax=fecha.split("/")				
+		var anio=fechax[2]
+		var mes=fechax[1]
+		var dia=fechax[0]			
+		var fecha2=anio+'/'+mes+'/'+dia
+		var nombre=$('#nombrecompleto').html()
+		var dni=$('#DNIreserva').html()
+		var mensaje="<p>"+nombre+" <b>"+dni+"</b></p>"
+		var contador=1;
+		var acompanantes=$('.compi')
+		var dniacompa=$('.dnicompi')		
+		for (var x=0;x<acompanantes.length;x++){
+			mensaje+="<p>"+acompanantes[x].innerHTML+" <b>"+dniacompa[x].innerHTML+"</b></p>"
+			contador++;
+		}
+		
+		console.log(mensaje)
+		datos={
+			numero:contador,
+			fecha:fecha2,
+			id_ruta:id,
+			reserva:mensaje
+		}
+		$.ajax({
+			url: 'rutas/php/guardarReserva.php',
+			data:datos,
+			type: 'POST',
+			DataType:'Json',		
+			success: function(data){
+				console.log(data)
+			}
+		})
+	}
 	
-	
-	
+    
+
+//""<p>Nombre: <span id='compi'>"+nombre+"</span></p><p>DNI: <span id='dnicompi'>"+dni+"</span></p><br><hr/>""
 

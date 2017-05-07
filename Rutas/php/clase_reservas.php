@@ -11,15 +11,15 @@
             }
 		}
 		//pagina web
-		function nuevaReserva($id_ruta,$id_usuario,$num_personas,$fecha){
+		function nuevaReserva($id_ruta,$id_usuario,$num_personas,$fecha, $personas){
 			$mensaje="";
-			$consulta="insert into reservas (ID_RUTAS, ID_USUARIO, NUM_PERSONAS, FECHA) VALUES (".$id_ruta.",".$id_usuario.",".$num_personas.",'".$fecha."')";
-			if($resultado=$this-conexion->query($consulta)){
+			$consulta="insert into reservas (ID_RUTA, ID_USUARIO, NUM_PERSONAS, FECHA, PERSONAS) VALUES (".$id_ruta.",".$id_usuario.",".$num_personas.",'".$fecha."', '".$personas."')";
+			/*if($resultado=$this-conexion->query($consulta)){
 				$mensaje="Reserva realizada";
 			}else{
 				$mensaje="No se ha podido realizar la reserva, intentalo de nuevo";
-			}
-			return $mensaje;
+			}*/
+			return $consulta;
 		}
 		//pagina web
 		function borrarReserva($id){

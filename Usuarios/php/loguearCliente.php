@@ -32,6 +32,7 @@ if($resultado == 0) {
 }else {
     if($nick == $resultado[0] && $password == $resultado[1]) {
 	session_start();
+		$_SESSION['ID']=$resultado[9];
         $_SESSION['nick'] = $resultado[0];
         $_SESSION['Correo'] = $resultado[2];
         $_SESSION['PerfilUsuario'] = $resultado[8];

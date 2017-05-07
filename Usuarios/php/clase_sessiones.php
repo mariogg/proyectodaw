@@ -1,7 +1,20 @@
 <?php
 	session_start();
 	
+	if($_SESSION['nick']==null){
+		$_SESSION['ID']="";
+		$_SESSION['nick'] = "";
+        $_SESSION['Correo'] = "";
+        $_SESSION['PerfilUsuario'] = "";
+		$_SESSION['dni']= "";
+		$_SESSION['nombre']= "";
+		$_SESSION['apellidos']= "";
+		$_SESSION['telefono']= "";
+		$_SESSION['fecna']= "";
+	}
+	
 	class session{
+		public $id;
 		public $usuario;
 		public $correo;
 		public $perfil;
@@ -11,7 +24,8 @@
 		public $fecna;
 		public $telefono;
 
-		function __construct($usuario,$correo,$perfil,$nombre,$apellidos,$dni,$fecna,$telefono){
+		function __construct($id,$usuario,$correo,$perfil,$nombre,$apellidos,$dni,$fecna,$telefono){
+			$this->id=$id;
 			$this->usuario=$usuario;
 			$this->correo=$correo;
 			$this->perfil=$perfil;
@@ -23,7 +37,7 @@
 		}
 	}
 
-	$enlace=new session($_SESSION['nick'],$_SESSION['Correo'],$_SESSION['PerfilUsuario'],$_SESSION['dni'],$_SESSION['nombre'],$_SESSION['apellidos'],$_SESSION['telefono'],$_SESSION['fecna']);
+	$enlace=new session($_SESSION['ID'],$_SESSION['nick'],$_SESSION['Correo'],$_SESSION['PerfilUsuario'],$_SESSION['dni'],$_SESSION['nombre'],$_SESSION['apellidos'],$_SESSION['telefono'],$_SESSION['fecna']);
 	header('Content-type: application/json');
     echo(json_encode($enlace));
 	
