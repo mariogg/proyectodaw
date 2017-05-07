@@ -11,10 +11,10 @@
             }
 		}
 		//pagina web
-		function nuevaReserva($id_ruta,$id_usuario,$num_personas,$fecha){
+		function nuevaReserva($id_ruta,$id_usuario,$num_personas,$fecha, $personas){
 			$mensaje="";
-			$consulta="insert into reservas (ID_RUTAS, ID_USUARIO, NUM_PERSONAS, FECHA) VALUES (".$id_ruta.",".$id_usuario.",".$num_personas.",'".$fecha."')";
-			if($resultado=$this-conexion->query($consulta)){
+			$consulta="insert into reservas (ID_RUTA, ID_USUARIO, NUM_PERSONAS, FECHA, PERSONAS) VALUES (".$id_ruta.",".$id_usuario.",".$num_personas.",'".$fecha."', '".$personas."')";
+			if($resultado=$this->conexion->query($consulta)){
 				$mensaje="Reserva realizada";
 			}else{
 				$mensaje="No se ha podido realizar la reserva, intentalo de nuevo";
@@ -25,7 +25,7 @@
 		function borrarReserva($id){
 			$mensaje="";
 			$consulta="delete from reservas where id=".$id;
-			if($resultado=$this-conexion->query($consulta)){
+			if($resultado=$this->conexion->query($consulta)){
 				$mensaje="Reserva borrada con exito";
 			}else{
 				$mensaje="No se ha podido borrar la reserva, intentalo de nuevo";
@@ -33,10 +33,10 @@
 			return $mensaje;
 		}
 		//pagina web
-		function editarReserva($id,$num_personas,)){
+		function editarReserva($id,$num_personas){
 			$mensaje="";
-			$consulta="update reservas set NUM_PERSONAS=".$num_personas." where id="$id;
-			if($resultado=$this-conexion->query($consulta)){
+			$consulta="update reservas set NUM_PERSONAS=".$num_personas." where id=".$id;
+			if($resultado=$this->conexion->query($consulta)){
 				$mensaje="Reserva modificada";
 			}else{
 				$mensaje="No se ha podido modificar la reserva, intentalo de nuevo";

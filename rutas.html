@@ -4,16 +4,23 @@
     <html>
 
         <head>
-            <link rel="stylesheet" href="estilos.css">
+			<link rel="stylesheet" href="estilos.css">
+            <link rel="stylesheet" href="css/rutas.css">
             <meta name="author" content="" />
             <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
             <meta name="copyright" content="aw1516.org" />
             <meta name="description" content="Paginas web de principiantes" />
+			<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css">
             <script  src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
             <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
             <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
-            <script  src="Usuarios/js/usuariosCliente.js"></script>
-            <title>RUTAS</title>
+            
+			<script  src="rutas/js/indexruta.js"></script>
+             <title>RUTAS</title>
+	<style>
+	
+		
+	</style>
         </head>
 
         <body>
@@ -76,35 +83,80 @@
                     <a href="img/banner.png" ><img src="img/publi-home.jpg"></a>
                 </div>
 
-                <aside>
-                    <ul>
-                        <h2>RUTAS MÁS VALORADAS</h2>
-                        <li>Ruta de Fuenlabrada</li>
-                        <li>Ruta de Moraleja</li>
-                        <li>Ruta de Getafe</li>
-                        <li>Ruta de Humanes</li>
-                    </ul>
-                </aside>
-
-                <section>
-                    <article>
-                        <a href="index.php"><img src="img/bienvenidos-home.gif" width="100%"></a>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce lobortis justo ut dolor mattis, quis consectetur sem fermentum. Duis at faucibus neque, eu tincidunt mi. Pellentesque sagittis massa eget massa dictum, at porttitor massa suscipit. Maecenas ornare suscipit risus vel maximus. Sed in est vitae enim viverra luctus. Donec fringilla lectus et sollicitudin feugiat. Aliquam erat volutpat.
-
-                            Aliquam nec semper dui. In at metus magna. Mauris arcu nisi, blandit at metus eu, fermentum facilisis sapien. Sed convallis tincidunt metus at sollicitudin. Proin a tincidunt risus, nec sollicitudin turpis. Curabitur sed lacinia leo. Praesent nunc dui, dignissim non finibus eu, commodo non quam. Suspendisse quis eleifend dolor.
-
-                            Donec tellus velit, lacinia vel diam non, fringilla pharetra velit. Cras vel hendrerit justo. Maecenas eu vestibulum diam, ut eleifend nisi. Interdum et malesuada fames ac ante ipsum primis in faucibus. Praesent ultrices orci a magna pharetra, ut iaculis erat condimentum. Phasellus ac aliquet justo. Praesent nulla urna, lobortis in vehicula id, consequat sed libero. Fusce nec fermentum nisl. Aliquam at dictum est, eget luctus risus. Proin pretium urna vitae lacus tempor vestibulum. Fusce sed enim sed mauris tincidunt dictum. Duis dignissim purus vitae maximus tincidunt. Donec ut eros non dui commodo ornare.
-
-                            Vestibulum tempus risus eu malesuada malesuada. Etiam vel lorem arcu. Nam eu arcu non arcu congue cursus. Quisque ultrices finibus sagittis. In enim lectus, facilisis ac luctus sed, fermentum eu est. Phasellus consectetur at odio pharetra suscipit. Nulla sollicitudin, elit quis venenatis lobortis, enim massa cursus urna, quis accumsan sapien velit vitae libero. Nam tincidunt interdum ante, sed commodo sem malesuada sit amet. Nullam eu varius lectus, vel blandit eros. Vivamus tincidunt lobortis risus, et elementum orci blandit a. Integer eu lacus malesuada, tempus eros ac, sagittis ante. Donec sem erat, porttitor ac ante rutrum, finibus placerat tortor. Integer sit amet felis sit amet urna mollis aliquet. Praesent posuere ipsum quis porttitor cursus.
-
-                            Pellentesque gravida lacinia dapibus. Integer vitae vulputate neque. Vivamus placerat tellus sit amet dapibus eleifend. Integer tempor, diam in venenatis tristique, nunc risus aliquam sapien, eu hendrerit odio ipsum ut enim. In tempor urna ipsum, in maximus nisl imperdiet sit amet. Suspendisse congue dolor in quam eleifend, a ornare eros vehicula. Aenean eget velit risus. Aenean sed nunc eget arcu ultricies molestie eget id leo. Nunc facilisis est vel est sodales blandit. Nunc aliquet vestibulum laoreet. Sed euismod accumsan sem at venenatis. Nullam rutrum nibh nisl, ut laoreet mi dapibus ac. Aliquam eget libero hendrerit nunc consectetur egestas vitae eget diam. Sed lacus tortor, ultricies ut erat eu, viverra egestas nulla. Quisque mi velit, pulvinar eget dolor eget, pharetra convallis lectus. Aenean accumsan eleifend tortor, nec vehicula lorem rutrum et.</p>
-                    </article>
-                </section>
-            </div>
-
+               
+    
+    <aside>
+		<div id="lista"></div>
+		<div>
+			<select id="localidad_busqueda">			
+				<option selected>Todas</option>
+				<option>Abadía</option>
+				<option>Aldeanueva del Camino</option>
+				<option>Baños de Montemayor</option>
+				<option>Casas del Monte</option>
+				<option>Gargantilla</option>
+				<option>Hervás</option>
+				<option>La Garganta</option>
+				<option>Segura del Toro</option>
+			</select>
+		</div>
+		<div>
+			<input type="text" name="calendario" id="datepicker"/>
+		</div>
+    </aside>
+    
+	<section>
+	<article>
+     <div id="ruta">
+	 <div id="titulo_ruta"><input type="hidden" id="id_ruta"/><p id="nombre_ruta"></p><p id="valoracion"></p></div>
+		<p><li>Localidad: <span id="localidad"></span></li>
+		<li>Distancia: <span id="Distancia"></span> km</li></p>
+		<p><li>Tiempo: <span id="Tiempo"></span></li>
+		<li>Dificultad: <span id="Dificultad"></span></li>
+		<li>Máximo Personas: <span id="max_personas"></span></li></p>
+		<p><li><a id="PDF"  href="" download=""><img id="icon" src="img/pdf.png"></img></a></li>
+		<li><a id="botonreserva" class="reserva" class="button" data-type="zoomin" href="#">RESERVAR</a></li><li>Fechas: <div id="fechas_ruta"></div></li></p>
+	 </div>
+	
+	<div id="tabs">
+	<ul>
+		<li><a href="#tabs-1">Descripción</a></li>
+		<li><a href="#tabs-2">Mapa</a></li>
+	</ul>
+    <div id="tabs-1"><div id="descripcion"></div></div>
+	<div id="tabs-2"><div id="mapa"></div></div>
+	
+    
+	</div>
+	
+    </article>
+	</section>
+    </div>
+	</div>
             <footer>
                 <p>RUTAS DoubleG S.A©</p>
             </footer>
+			<div class="overlay-container">
+				<div class="window-container zoomin">
+				<span id="close" class="button reserva">Cerrar</span>
+					<div id="reservar">
+					<li>Ruta: <span id="rutareserva"></span></li>
+					<li>Nombre completo: <span id="nombrecompleto"></span></li>
+					<li><label>DNI: <span id="DNIreserva"></span>	</li>
+					</div>
+					
+					<div class="acompanante">	
+					<p>Nuevo/a comapañero/a</p>					
+					<li>Nombre completo: <input type="text" id ="nombre_rutero" name="nombre_completo"/></span></li>
+					<li><label>DNI: <input type="text" id ="dni_rutero" name="dni_acompanante"/></span>	</li>
+					</div>
+					<div id="listado_ruteros" class="oculto"></div>
+					<a href="#" id="rutero" class="button reserva">Añadir</a>
+					<span id="guardar_Reserva" class="button reserva">Guardar</span>
+			</div>
+			
+		</div>
+			
         </body>
 
     </html>
