@@ -5,6 +5,118 @@ var day = date.getDay();
 return [(day != 0 && day != 1 && day != 2 && day != 3 && day != 4 && day != 5), ''];
 }
 
+function calcularTiempo(minutos){
+	var horas=Math.trunc(minutos/60);
+	var minuto=minutos-horas*60;
+
+	return (horas+"H "+minuto+"'")
+	
+}
+
+function cargarRutas(){	
+	
+	$.ajax({
+		url: 'rutas/php/panel_admin_verRutas.php',  
+
+		type: 'POST',
+		DataType:'Json',		
+		success: function(data){ 
+			var enlace=""
+			$('#listado').html("")
+			//enlace="<select id='listado'>"
+			
+			for(var x=0;x<data.length;x++){
+								
+				if(x==0){
+					enlace+="<option selected='selected'>"					
+				}else{
+					enlace+="<option>"
+				}				
+				enlace +=data[x].nombre
+				enlace+="</option>"
+			}
+			//enlace+="</select>"   			
+			$('#listado').html(enlace)		
+			var ruta=$('#listado').val()
+				
+			CargarRutaInicio(ruta)
+			$('#lista').change(function(){	
+			var ruta=$('#listado').val()				
+			CargarRutaInicio(ruta)
+								
+			})			
+		}		
+	})
+}
+
+
+function CargarRutaInicio(ruta){	
+	dato={
+		ruta:ruta
+	}
+	$.ajax({
+		data:dato,
+		url: 'rutas/php/cargar_ruta_valor.php',  
+		type: 'POST',
+		DataType:'Json',		
+		success: function(data){ 
+			var id=data[0].id
+				
+			var tiempo=calcularTiempo(data[0].minutos)
+			$('#id_ruta').val(data[0].id)
+			$('#nombre_ruta').html(data[0].nombre)
+			$('#localidad').html(data[0].localidad)
+			$('#Tiempo').html(tiempo)
+			$('#Distancia').html(data[0].km)
+			$('#valoracion').html(data[0].valoracion)
+			$('#Dificultad').html(data[0].dificultad)
+			$('#max_personas').html(data[0].max_res)
+			$('#PDF').attr("href",(data[0].pdf))
+			$('#PDF').attr("download",(data[0].nombre))
+			$('#descripcion').html(data[0].consejos)
+			$('#mapa').html(data[0].mapa)	
+			dato={
+				id:id
+			}
+			$.ajax({
+				data:dato,
+				url: 'rutas/php/calendario_una_ruta.php',
+				type: 'POST',
+				DataType: 'Json',
+				success:function(data){
+									
+					$('#fechas_ruta').html("")
+					enlace="<select id='listado_rutas'>"
+					for(var x=0;x<data.length;x++){
+						fecha=data[x].fecha2					
+						fechax=fecha.split("-")			
+						anio=fechax[0]
+						mes=fechax[1]
+						dia=fechax[2]			
+						fecha2=dia+'/'+mes+'/'+anio					
+						if(x==0){
+							enlace+="<option selected='selected'>"					
+						}else{
+							enlace+="<option>"
+						}				
+						enlace +=fecha2
+						enlace+="</option>"
+					}
+					enlace+="</select>"   			
+					$('#fechas_ruta').html(enlace)
+					var consulta=$('#datepicker').val()
+					
+					if(consulta!=undefined){
+						
+						$('#listado_rutas').val(consulta)
+					}
+				}
+			})
+		}
+	})	
+}
+
+
 function cargarRutasFecha(){
 	$('#localidad_busqueda').val("Todas")
 	var fecha = $('#datepicker').val()
@@ -89,23 +201,7 @@ function cargarRutasLocalidad(){
 		}
 	})
 }
-/*
-function comprobarSession(){
-	$.ajax({
-		url: 'usuarios/php/clase_sessiones.php',
-		type: 'POST',
-		DataType:'Json',		
-		success: function(data){ 
-		
-		if (data.usuario==""){
-			console.log("no hay sesion")
-		}else{
-			console.log("Session: "+data.usuario)
-		}
-			
-		}
-	})
-}*/
+
 
 function annadir(){
 	if($('#nombre_rutero').val()== "" || $('#dni_rutero').val()==""){
@@ -128,6 +224,7 @@ function annadir(){
 }
 
 $(document).ready(function(){
+	$('#reset').click(reseteo)
 	comprobarSession()
 	$('#rutero').click(annadir)
 	$('#localidad_busqueda').change(cargarRutasLocalidad)
@@ -162,129 +259,26 @@ $(document).ready(function(){
 	cargarRutas()
 	//CargarRutaInicio()
 	
-  
-
-
-function cargarRutas(){	
-	
-	$.ajax({
-		url: 'rutas/php/panel_admin_verRutas.php',  
-
-		type: 'POST',
-		DataType:'Json',		
-		success: function(data){ 
-			
-			$('#lista').html("")
-			enlace="<select id='listado'>"
-			for(var x=0;x<data.length;x++){
-								
-				if(x==0){
-					enlace+="<option selected='selected'>"					
-				}else{
-					enlace+="<option>"
-				}				
-				enlace +=data[x].nombre
-				enlace+="</option>"
-			}
-			enlace+="</select>"   			
-			$('#lista').html(enlace)		
-			var ruta=$('#listado').val()
-				
-			CargarRutaInicio(ruta)
-			$('#lista').change(function(){	
-			var ruta=$('#listado').val()				
-			CargarRutaInicio(ruta)
-								
-			})			
-		}		
-	})
-}
-
-function CargarRutaInicio(ruta){	
-	dato={
-		ruta:ruta
-	}
-	$.ajax({
-		data:dato,
-		url: 'rutas/php/cargar_ruta_valor.php',  
-		type: 'POST',
-		DataType:'Json',		
-		success: function(data){ 
-			var id=data[0].id
-				
-			var tiempo=calcularTiempo(data[0].minutos)
-			$('#id_ruta').val(data[0].id)
-			$('#nombre_ruta').html(data[0].nombre)
-			$('#localidad').html(data[0].localidad)
-			$('#Tiempo').html(tiempo)
-			$('#Distancia').html(data[0].km)
-			$('#valoracion').html(data[0].valoracion)
-			$('#Dificultad').html(data[0].dificultad)
-			$('#max_personas').html(data[0].max_res)
-			$('#PDF').attr("href",(data[0].pdf))
-			$('#PDF').attr("download",(data[0].nombre))
-			$('#descripcion').html(data[0].consejos)
-			$('#mapa').html(data[0].mapa)	
-			dato={
-				id:id
-			}
-			$.ajax({
-				data:dato,
-				url: 'rutas/php/calendario_una_ruta.php',
-				type: 'POST',
-				DataType: 'Json',
-				success:function(data){
-									
-					$('#fechas_ruta').html("")
-					enlace="<select id='listado_rutas'>"
-					for(var x=0;x<data.length;x++){
-						fecha=data[x].fecha2					
-						fechax=fecha.split("-")			
-						anio=fechax[0]
-						mes=fechax[1]
-						dia=fechax[2]			
-						fecha2=dia+'/'+mes+'/'+anio					
-						if(x==0){
-							enlace+="<option selected='selected'>"					
-						}else{
-							enlace+="<option>"
-						}				
-						enlace +=fecha2
-						enlace+="</option>"
-					}
-					enlace+="</select>"   			
-					$('#fechas_ruta').html(enlace)
-					var consulta=$('#datepicker').val()
-					
-					if(consulta!=undefined){
-						
-						$('#listado_rutas').val(consulta)
-					}
-				}
-			})
-		}
-	})	
-}
 $('#guardar_Reserva').click(guardarReserva)
-function calcularTiempo(minutos){
-	var horas=Math.trunc(minutos/60);
-	var minuto=minutos-horas*60;
-
-	return (horas+"H "+minuto+"'")
-	
-}
 
 //comentario
 
 	$('#botonreserva').click(function() {
 		console.log($('#nombre_ruta').html())
 		
-		$('#guardar_Reserva').addClass('oculto')
-				$('#rutero').addClass('oculto')
-				$('.acompanante').addClass('oculto')
-				if($('#listado_ruteros').hasClass('oculto')){
-					$('#listado_ruteros').removeClass('oculto')
-				$('#listado_ruteros').addClass('mostrar')}
+		
+				if($('#rutero').hasClass('oculto')){
+					$('#rutero').removeClass('oculto')
+				$('#rutero').addClass('mostrar')}
+				if($('.acompanante').hasClass('oculto')){
+					$('.acompanante').removeClass('oculto')
+				$('.acompanante').addClass('mostrar')}
+				if($('#listado_ruteros').hasClass('mostrar')){
+					$('#listado_ruteros').removeClass('mostrar')
+				$('#listado_ruteros').addClass('oculto')}
+				if($('#guardar_Reserva').hasClass('oculto')){
+					$('#guardar_Reserva').removeClass('oculto')
+				$('#guardar_Reserva').addClass('mostrar')}
 		$.ajax({
 			url:   'Usuarios/php/clase_sessiones.php',
             type:  'post',
@@ -309,12 +303,7 @@ function calcularTiempo(minutos){
 	
 	$('#close').click(cerrarPopUp);
 	
-	function cerrarPopUp(){
-		$('#listado_ruteros').removeClass("mostrar")
-		$('#listado_ruteros').addClass("ocultar")
-		$('#listado_ruteros').html("")
-		$('.overlay-container').fadeOut().end().find('.window-container').removeClass('window-container-visible');
-	}
+	
 	comprobarSession()
 
     $('#loguearse').on('click',function() {
@@ -658,6 +647,17 @@ function comprobarSession(){
 		})
 	}
 	
+	function cerrarPopUp(){
+		$('#listado_ruteros').removeClass("mostrar")
+		$('#listado_ruteros').addClass("ocultar")
+		$('#listado_ruteros').html("")
+		$('.overlay-container').fadeOut().end().find('.window-container').removeClass('window-container-visible');
+	}
 	
-
+	function reseteo(){
+		$('#datepicker').val("")
+		$('#localidad_busqueda').val("Todas")
+		cargarRutas()
+		cargarRutaInicio($('#listado').val())
+	}
 

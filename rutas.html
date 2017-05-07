@@ -86,7 +86,9 @@
                
     
     <aside>
-		<div id="lista"></div>
+		<p>Rutas seleccionables:</p>
+		<div id="lista"><select id="listado"></select></div>
+		<p>Localidades:</p>
 		<div>
 			<select id="localidad_busqueda">			
 				<option selected>Todas</option>
@@ -100,9 +102,11 @@
 				<option>Segura del Toro</option>
 			</select>
 		</div>
+		<p>Fechas disponibles:</p>
 		<div>
 			<input type="text" name="calendario" id="datepicker"/>
 		</div>
+		<span class="button reserva" id="reset">Reset</span>
     </aside>
     
 	<section>
