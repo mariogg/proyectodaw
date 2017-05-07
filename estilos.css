@@ -226,6 +226,25 @@ aside h3 {
     visibility:visible;
 }
 
+#updateUsuario {
+    background-color:grey;
+    text-align:center;
+    width:35%;
+    
+}
+
+#updateUsuario input {
+    float:right;
+}
+
+.ocultar2 {
+    display:none;
+}
+
+.mostrar2 {
+    display:inline-block;
+}
+
 
 
 

@@ -64,6 +64,8 @@ class Usuarios{
 		$mensaje= "";
 		
 		$consulta = "update usuarios set USUARIO='$usuario',CORREO='$correo',DNI='$dni',NOMBRE='$nombre',APELLIDOS='$apellidos',FECNA='$fecna',TELEFONO=$telefono,PERFIL='$perfil'";
+        
+        
 		
 		if($respuesta=$this->conexion->query($consulta)) {
 			$mensaje = "Se ha modificado el usuario con ID ". $id;
