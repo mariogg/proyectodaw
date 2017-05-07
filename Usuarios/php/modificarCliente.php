@@ -19,6 +19,6 @@ $visualizar = $enlace->modificarUsuario($correo,$dni,$nombre,$apellidos,$fecna,$
 
 
 
-echo json_encode(array($correo,$dni,$nombre,$apellidos,$fecna,$telefono,$password,$nuevaPassWord,$visualizar));
+echo json_encode(array($visualizar));
 
 ?>

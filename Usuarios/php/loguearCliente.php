@@ -41,6 +41,7 @@ if($resultado == 0) {
 		$_SESSION['apellidos']=$resultado[3];
 		$_SESSION['telefono']=$resultado[6];
 		$_SESSION['fecna']=$resultado[7];
+        //$_SESSION['password'] = $resultado[1];
         
         $respuesta = new ObjetoLoguin($_SESSION["nick"],$_SESSION["Correo"],$_SESSION["PerfilUsuario"]);
         header('Content-type: application/json');
