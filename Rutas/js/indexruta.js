@@ -70,7 +70,7 @@ function CargarRutaInicio(ruta){
 			$('#Distancia').html(data[0].km)
 			$('#valoracion').html(data[0].valoracion)
 			$('#Dificultad').html(data[0].dificultad)
-			$('#max_personas').html(data[0].max_res)
+			//$('#max_personas').html(data[0].max_res)
 			$('#PDF').attr("href",(data[0].pdf))
 			$('#PDF').attr("download",(data[0].nombre))
 			$('#descripcion').html(data[0].consejos)
@@ -143,6 +143,7 @@ function cargarRutasFecha(){
 			
 				if(data[0].nombre=="vacio"){
 						alert("No Hay rutas para esa fecha");
+						cargarRutas()
 				}else{			
 					$('#lista').html("")
 					enlace="<select id='listado'>"
@@ -159,10 +160,10 @@ function cargarRutasFecha(){
 					enlace+="</select>"   			
 					$('#lista').html(enlace)		
 						var ruta=$('#listado').val()				
-						CargarRutaInicio(ruta)
+						//CargarRutaInicio(ruta)
 								
 				}
-			
+				CargarRutaInicio(ruta)
 			}
 		})
 	}
@@ -203,25 +204,7 @@ function cargarRutasLocalidad(){
 }
 
 
-function annadir(){
-	if($('#nombre_rutero').val()== "" || $('#dni_rutero').val()==""){
-		
-	}else{
-		if($('#listado_ruteros').hasClass('oculto')){
-			$('#listado_ruteros').removeClass("oculto")
-			$('#listado_ruteros').addClass("mostrar")
-		}
-		//$('#listado_ruteros').removeClass("oculto")
-		//$('#listado_ruteros').addClass("mostrar")
-		var nombre=$('#nombre_rutero').val()
-		var dni=$('#dni_rutero').val()
-		
-		var mensaje=$('#listado_ruteros').html()
-		mensaje+="<p>Nombre: <span class='compi'>"+nombre+"</span></p><p>DNI: <span class='dnicompi'>"+dni+"</span></p><br><hr/>"
-		$('#listado_ruteros').html(mensaje)
-	}
-	
-}
+
 
 $(document).ready(function(){
 	$('#reset').click(reseteo)
@@ -267,17 +250,17 @@ $('#guardar_Reserva').click(guardarReserva)
 		console.log($('#nombre_ruta').html())
 		
 		
-				if($('#rutero').hasClass('oculto')){
-					$('#rutero').removeClass('oculto')
+				if($('#rutero').hasClass('ocultar')){
+					$('#rutero').removeClass('ocultar')
 				$('#rutero').addClass('mostrar')}
-				if($('.acompanante').hasClass('oculto')){
-					$('.acompanante').removeClass('oculto')
+				if($('.acompanante').hasClass('ocultar')){
+					$('.acompanante').removeClass('ocultar')
 				$('.acompanante').addClass('mostrar')}
 				if($('#listado_ruteros').hasClass('mostrar')){
 					$('#listado_ruteros').removeClass('mostrar')
-				$('#listado_ruteros').addClass('oculto')}
-				if($('#guardar_Reserva').hasClass('oculto')){
-					$('#guardar_Reserva').removeClass('oculto')
+				$('#listado_ruteros').addClass('ocultar')}
+				if($('#guardar_Reserva').hasClass('ocultar')){
+					$('#guardar_Reserva').removeClass('ocultar')
 				$('#guardar_Reserva').addClass('mostrar')}
 		$.ajax({
 			url:   'Usuarios/php/clase_sessiones.php',
@@ -631,13 +614,15 @@ function comprobarSession(){
 			DataType:'Json',		
 			success: function(data){
 				console.log(data)
-				$('#guardar_Reserva').addClass('oculto')
-				$('#rutero').addClass('oculto')
-				$('.acompanante').addClass('oculto')
-				if($('#listado_ruteros').hasClass('oculto')){
-					$('#listado_ruteros').removeClass('oculto')
-					$('#listado_ruteros').addClass('mostrar')
-				}
+				$('#guardar_Reserva').removeClass('mostrar')
+				$('#guardar_Reserva').addClass('ocultar')
+				$('#rutero').removeClass('mostrar')
+				$('#rutero').addClass('ocultar')
+				$('.acompanante').removeClass('mostrar')
+				$('.acompanante').addClass('ocultar')
+				
+				$('#listado_ruteros').addClass('mostrar')
+				
 				var acompa=$('#listado_ruteros').html()
 				acompa+="<p>"+data+"</p>"
 				console.log("guardado"+acompa)
@@ -647,10 +632,38 @@ function comprobarSession(){
 		})
 	}
 	
-	function cerrarPopUp(){
+	
+
+function annadir(){
+	if($('#nombre_rutero').val()== "" || $('#dni_rutero').val()==""){
+		
+	}else{
+		
+			$('#listado_ruteros').removeClass("ocultar")
+			$('#listado_ruteros').addClass("mostrar")
+		
+		//$('#listado_ruteros').removeClass("ocultar")
+		//$('#listado_ruteros').addClass("mostrar")
+		var nombre=$('#nombre_rutero').val()
+		var dni=$('#dni_rutero').val()
+		
+		var mensaje=$('#listado_ruteros').html()
+		mensaje+="<p>Nombre: <span class='compi'>"+nombre+"</span></p><p>DNI: <span class='dnicompi'>"+dni+"</span></p><br><hr/>"
+		$('#listado_ruteros').html(mensaje)
+	}
+	
+}
+
+function cerrarPopUp(){
 		$('#listado_ruteros').removeClass("mostrar")
 		$('#listado_ruteros').addClass("ocultar")
 		$('#listado_ruteros').html("")
+		$('#guardar_Reserva').removeClass('ocultar')
+		$('#guardar_Reserva').addClass('mostrar')
+		$('#rutero').removeClass('ocultar')
+		$('#rutero').addClass('mostrar')
+		$('.acompanante').removeClass('ocultar')
+		$('.acompanante').addClass('mostrar')
 		$('.overlay-container').fadeOut().end().find('.window-container').removeClass('window-container-visible');
 	}
 	
@@ -660,4 +673,3 @@ function comprobarSession(){
 		cargarRutas()
 		cargarRutaInicio($('#listado').val())
 	}
-
