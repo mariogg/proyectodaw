@@ -1,4 +1,5 @@
 <?php
+	session_Start();
 	include 'clase_reservas.php';
 	$mensaje=$_POST['reserva'];
 	$fecha=$_POST['fecha'];

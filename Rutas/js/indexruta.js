@@ -278,12 +278,19 @@ function calcularTiempo(minutos){
 
 	$('#botonreserva').click(function() {
 		console.log($('#nombre_ruta').html())
+		
+		$('#guardar_Reserva').addClass('oculto')
+				$('#rutero').addClass('oculto')
+				$('.acompanante').addClass('oculto')
+				if($('#listado_ruteros').hasClass('oculto')){
+					$('#listado_ruteros').removeClass('oculto')
+				$('#listado_ruteros').addClass('mostrar')}
 		$.ajax({
 			url:   'Usuarios/php/clase_sessiones.php',
             type:  'post',
 			TypeData: 'Json',
 			success:function(data){
-				console.log(data)
+				
 				$('#nombrecompleto').html(data.nombre+" "+data.apellidos)
 				$('#rutareserva').html($('#nombre_ruta').html())
 				$('#DNIreserva').html(data.dni)
@@ -300,12 +307,14 @@ function calcularTiempo(minutos){
 		});
 	});
 	
-	$('#close').click(function() {
+	$('#close').click(cerrarPopUp);
+	
+	function cerrarPopUp(){
 		$('#listado_ruteros').removeClass("mostrar")
 		$('#listado_ruteros').addClass("ocultar")
 		$('#listado_ruteros').html("")
 		$('.overlay-container').fadeOut().end().find('.window-container').removeClass('window-container-visible');
-	});
+	}
 	comprobarSession()
 
     $('#loguearse').on('click',function() {
@@ -633,11 +642,22 @@ function comprobarSession(){
 			DataType:'Json',		
 			success: function(data){
 				console.log(data)
+				$('#guardar_Reserva').addClass('oculto')
+				$('#rutero').addClass('oculto')
+				$('.acompanante').addClass('oculto')
+				if($('#listado_ruteros').hasClass('oculto')){
+					$('#listado_ruteros').removeClass('oculto')
+					$('#listado_ruteros').addClass('mostrar')
+				}
+				var acompa=$('#listado_ruteros').html()
+				acompa+="<p>"+data+"</p>"
+				console.log("guardado"+acompa)
+				$('#listado_ruteros').html(acompa)
+					
 			}
 		})
 	}
 	
-    
+	
 
-//""<p>Nombre: <span id='compi'>"+nombre+"</span></p><p>DNI: <span id='dnicompi'>"+dni+"</span></p><br><hr/>""
 
