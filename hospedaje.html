@@ -1,134 +1,57 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es">
-    <html>
-
-        <head>
-            <link rel="stylesheet" href="estilos.css">
-            <meta name="author" content="" />
-            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-            <meta name="copyright" content="aw1516.org" />
-            <meta name="description" content="Paginas web de principiantes" />
-            <script  src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
-            <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
-            <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
-            <script  src="Usuarios/js/mostrar_hospedaje_localidad.js"></script>
-            <script  src="Usuarios/js/usuariosCliente.js"></script>
-            <script  src="Rutas/js/valoracion-rutas.js"></script>
-            
-            
-            
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+   "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <html>
+    <head>
+        <title>RutAmbroz</title>
+        <meta http-equiv="content-type" content="text/html;charset=utf-8" />
         <link rel="stylesheet" type="text/css" href="css/style.css"/>
 	    <link rel="stylesheet" href="rutas/js/jquery-ui.css">
 		<script  src="rutas/js/jquery.min.js"></script>
         <script src="rutas/js/jquery-1.9.1.js"></script>
         <script src="rutas/js/jquery-ui.js"></script>
-        
-        <script  src="usuarios/js/mostrar_hospedaje_localidad.js"></script>
-            
-            <title>RUTAS</title>
-        </head>
-
-        <body>
-           <nav id="menu-top">
-                 <div id="desc" class="ocultar" style='width:300px;float:right;color:white;'><form><p>Conectado como <a href='perfilUsuario.html' id='nickLogueado'></a> <input type='button' name='desconectar' id='desconectar' class='botonEspecial' value='Desconectar'/></p></form>
-                </div>
-                <li id="liLogueo" class="mostrar"><a href="#">Loguearse</a>
-                    <ul id="ulLogueo" class="mostrar">
-                        <li>
-                            <form>
-                                <div>Nick:</div>
-                                <div><input type='text' name='usuario' placeholder='Usuario' id='usuario'/></div>
-                                <div>Contraseña:</div>
-                                <div><input type='password' name='passwd' id="passwd" placeholder='Password'/></div>
-                                <div><input type='button' name='loguearse' id='loguearse' class="botonEspecial" value='Enviar' /></div>
-                            </form>
-
-
-                        </li>
-                    </ul>
-                </li>
-               
-                <li><a href="#" id="liRegistro" class="mostrar">Registrarse</a>
-                    <ul class="mostrar" id="ulRegistro">
-                        <li>
-                            <form id="insert" >
-                                <div id="registrarse">Registrarse aquí:</div>
-                                <div>Nick de usuario: <input type="text" name="usuario" id="usuario" placeholder="ej:CyberBob"/></div>
-                                <div>Contraseña: <input type="password" name="passwd" id="passwd"/></div>
-                                <div>Correo electrónico: <input type="text" name="correo" id="correo" placeholder="ej:usuario@correo.com"/></div>
-                                <div>DNI:<input type="text" name="dni" id="dni" placeholder="ej:David"/></div>
-                                <div>Nombre:<input type="text" name="nombre" id="nombre" placeholder="ej:David"/></div> 
-                                <div>Apellidos: <input type="text" name="apellidos" id="apellidos" placeholder="ej:García Hernández"/></div>
-                                <div>Fecha de nacimiento: <input type="text" name="fecna" id="fecna" placeholder="ej:23/05/1997"/></div>
-                                <div>Teléfono: <input type="text" name="telefono" id="telefono" placeholder="678365229"/></div>
-                                <!--El siguiente input #perfil hay que dejarlo oculto para que el usuario no lo vea -->
-                                <div><input type="text" name="perfil" id="perfil" value="3"/></div>
-                                <div><input type="button" name="insertar" id="insertar" class="botonEspecial" value="Enviar"/></div>
-                            </form>
-                        </li>
-                    </ul>         
-                </li>
-            </nav>  
-    
-<div id="centrar">  
-<header>
-<img src="img/header.jpg" width="100%">
-</header>
-    	<nav id="menu-principal">
-     <ul>  
-    <li><a href="index.html">INICIO</a></li>
-    <li><a href="#">RUTAS</a>
-    </li>
-    <li><a href="hospedaje.html">HOSPEDAJE</a></li>
-    <li><a href="guias.html">GUIAS</a>
-    </li>
-    <li class="ocultar" id="botonAdmin" ><a href="#">GESTIÓN</a></li>
-          </ul> 
-	</nav>
-
-    
-    <div id="div1">
-    <img src="img/logo-rutas.png">
-	</div>
-    <div class="cuerpo1">
-    <div class="cuerpo2">
-    <aside>
-    <form> 
-        <h3>Localidad</h3>
-      <select id="listado_pueblos">
-    <option value="Todos">Todos</option>
-    <option value="Abadia">Abadía</option> 
-    <option value="Aldeanueva del Camino">Aldeanueva del Camino</option> 
-    <option value="Banios de Montemayor">Baños de Montemayor</option>
-    <option value="Gargantilla">Gargantilla</option> 
-    <option value="Casas del Monte">Casas del Monte</option> 
-    <option value="Segura del Toro">Segura del Toro</option>
-    <option value="La Garganta">La Garganta</option> 
-    <option value="Hervas">Hervas</option>
-</select>
-        </form>
-        <h3>Rutas más valoradas</h3>
-        <div id="mas-valoradas"></div>
-        
-    </aside>
-    
-	<section>
-    <article>
-  
-    <div id="mostrar"></div>
-        
-    </article>
+        <script  src="usuarios/js/adminhospedaje.js"></script>
+    </head>
+    <body>
+	<!-- convertir en popup -->
+	<section id="annadir">
+		<label>ID: <input type="text" name="id"></input></label>
+		<label>Nombre: <input type="text" name="nombre"></input></label>
+		<label>Localidad: 
+			<select id="localidad">			
+				<option selected>Abadía</option>
+				<option>Aldeanueva del Camino</option>
+				<option>Baños de Montemayor</option>
+				<option>Casas del Monte</option>
+				<option>Gargantilla</option>
+				<option>Hervás</option>
+				<option>La Garganta</option>
+				<option>Segura del Toro</option>
+			</select>
+		</label>
+		<label>Dirección: <input type="text" name="direccion"></input></label>
+		<label>Teléfonos: <input type="text" name="telefono"></input></label>
+		<label>Email: <input type="text" name="email"></input></label>
+		<label>URL: <input type="text" name="web"></input></label>
+		<button id="guardar">Guardar</button><!-- Ocultar o visualizar -->
+		<button id="actualizar">Editar</button><!-- Ocultar o visualizar -->
 	</section>
-       
-    </div>
-    </div>
-     <footer>
-    <p>RUTAS Ambroz S.A ©Copyright 2017 | Todos los derechos reservados.</p>
-	</footer>
-    </div>
-    
-    
-</body>
-
+	<!-- fin del popup -->
+	<div id="mensaje"></div>
+	<section>
+		<select id="hospedaje">
+			<option selected>Todos</option>
+			<option>Abadía</option>
+			<option>Aldeanueva del Camino</option>
+			<option>Baños de Montemayor</option>
+			<option>Casas del monte</option>
+			<option>Gargantilla</option>
+			<option>Hervás</option>
+			<option>La Garganta</option>
+			<option>Segura del Toro</option>
+		</select>
+		<div><p>Listado de hospedajes</p></div>
+		<div id="mostrar"></div>
+	</section>
+	</body>
 </html>
