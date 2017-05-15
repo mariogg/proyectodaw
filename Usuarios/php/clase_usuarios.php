@@ -32,11 +32,11 @@ class Usuarios{
 	}
     
     function comprobarLogueo($nick) {
-        $consulta = "select ID, USUARIO,CORREO,DNI,NOMBRE,APELLIDOS,FECNA,TELEFONO,PASSWORD,perfilusuario.PERFIL as PERFIL from usuarios join perfilusuario on perfilusuario.IDPERFIL = usuarios.PERFIL where USUARIO='$nick'";
+        $consulta = "select USUARIO,CORREO,DNI,NOMBRE,APELLIDOS,FECNA,TELEFONO,PASSWORD,perfilusuario.PERFIL as PERFIL from usuarios join perfilusuario on perfilusuario.IDPERFIL = usuarios.PERFIL where USUARIO='$nick'";
         $resul="";
         if($resultado=$this->conexion->query($consulta)) {
             while($fila=$resultado->fetch_assoc()){ 
-                $idSelect=$fila['ID'];
+                
                 $nickSelect = $fila['USUARIO'];
                 $passwordSelect = $fila['PASSWORD'];
                 $correoSelect = $fila['CORREO'];
@@ -48,7 +48,7 @@ class Usuarios{
                 
                 $perfilSelect = $fila['PERFIL'];
                 
-                $resul=[$nickSelect,$passwordSelect,$correoSelect,$dniSelect,$nombreSelect,$apellidosSelect,$fecnaSelect,$telefonoSelect,$perfilSelect,$idSelect];
+                $resul=[$nickSelect,$passwordSelect,$correoSelect,$dniSelect,$nombreSelect,$apellidosSelect,$fecnaSelect,$telefonoSelect,$perfilSelect];
             } 
 
             return $resul;
@@ -60,12 +60,10 @@ class Usuarios{
 
         
 	//Hace un update a la base de datos para modificar parámetros de usuario
-	function modificarUsuario($id,$usuario,$correo,$dni,$nombre,$apellidos,$fecna,$telefono,$password) {
+	function modificarUsuario($id,$usuario,$correo,$dni,$nombre,$apellidos,$fecna,$telefono,$perfil) {
 		$mensaje= "";
 		
-		$consulta = "update usuarios set  NOMBRE='$nombre',APELLIDOS='$apellidos',FECNA='$fecna',TELEFONO=$telefono,PASSWORD='$password' where ID=$id";
-        
-        
+		$consulta = "update usuarios set USUARIO='$usuario',CORREO='$correo',DNI='$dni',NOMBRE='$nombre',APELLIDOS='$apellidos',FECNA='$fecna',TELEFONO=$telefono,PERFIL='$perfil'";
 		
 		if($respuesta=$this->conexion->query($consulta)) {
 			$mensaje = "Se ha modificado el usuario con ID ". $id;
